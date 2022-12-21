@@ -18,3 +18,7 @@ Dengue cases and deaths in Indiasince 2017: https://nvbdcp.gov.in/index4.php?lan
 # The Americas
 
 https://www3.paho.org/data/index.php/en/mnu-topics/indicadores-dengue-en/dengue-nacional-en/252-dengue-pais-ano-en.html
+
+# Level of Risk by Country
+
+Source: https://www.cdc.gov/dengue/areaswithrisk/around-the-world.html
