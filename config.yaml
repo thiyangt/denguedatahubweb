@@ -21,7 +21,7 @@ menu:
     - identifier: home
       name: Home
       pre: <i class='fa fa-home fa-fw'></i>
-      url: /
+      url: /about/
       weight: 1
     - identifier: post
       name: Posts
