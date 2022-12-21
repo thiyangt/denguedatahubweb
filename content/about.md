@@ -1,9 +1,13 @@
 ---
 date: "2022-04-09"
-description: The goal of the Dengue Data Hub is to provide the research community with a unified dataset by collecting worldwide dengue-related data, merged with exogenous variables helpful for a better understanding of the spread of dengue and the reproducibility of research.
+description: Worldwide Dengue-related Data
 sidemenu: "true"
 title: Dengue Data Hub
 ---
+
+## About 
+
+The goal of the Dengue Data Hub is to provide the research community with a unified dataset by collecting worldwide dengue-related data, merged with exogenous variables helpful for a better understanding of the spread of dengue and the reproducibility of research.
 
 ## Download the data
 
@@ -22,6 +26,8 @@ title: Dengue Data Hub
 By using Dengue Data Hub, you agree to our terms of use.
 
 ## Authors
+
+[Dr Thiyanga S. Talagala](https://thiyanga.netlify.app/)
 
 ## Funded by
 
