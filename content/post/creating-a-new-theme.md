@@ -22,3 +22,11 @@ https://www3.paho.org/data/index.php/en/mnu-topics/indicadores-dengue-en/dengue-
 # Level of Risk by Country
 
 Source: https://www.cdc.gov/dengue/areaswithrisk/around-the-world.html
+
+# Open-world dengue dataset
+
+https://wonder.cdc.gov/nndss/nndss_weekly_tables_menu.asp
+
+# To-work
+
+https://wonder.cdc.gov/nndss/nndss_weekly_tables_menu.asp
