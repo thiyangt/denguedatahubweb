@@ -3,6 +3,7 @@ project:
 
 website:
   title: "Dengue Data Hub"
+  google-analytics: "UA-XXXXXXXX"
   navbar:
     right:
       - about.qmd
@@ -15,5 +16,6 @@ format:
     theme: yeti
     css: styles.css
 
+  
 
 
