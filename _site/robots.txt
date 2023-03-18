@@ -1,1 +1,1 @@
-Sitemap: https://coruscating-gumdrop-63f02a.netlify.app/sitemap.xml
+Sitemap: https://denguedatahub.netlify.app/sitemap.xml
