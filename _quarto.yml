@@ -6,7 +6,11 @@ website:
   google-analytics: "UA-XXXXXXXX"
   navbar:
     right:
-      - about.qmd
+      - world.qmd
+      - srilanka.qmd
+      - singapore.qmd
+      - china.qmd
+      - viz.qmd
       - icon: github
         href: https://github.com/
       - icon: twitter

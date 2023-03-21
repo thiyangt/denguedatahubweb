@@ -1,0 +1,10 @@
+---
+title: "Singapore"
+toc: true
+format:
+  html:
+    theme: default
+jupyter: python3
+---
+
+# 
