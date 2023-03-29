@@ -14,6 +14,20 @@
     "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
   },
   {
+    "objectID": "china.html",
+    "href": "china.html",
+    "title": "China",
+    "section": "",
+    "text": "Annual Dengue Cases from 2005 to 2020\n\nlibrary(denguedatahub)\nchina_annual_data\n\n# A tibble: 16 × 5\n    year dengue.cases.indigenous dengue.cases.imported counties.with.dengue.fe…¹\n   <int>                   <dbl>                 <dbl>                     <dbl>\n 1  2005                       0                    45                         0\n 2  2006                    1007                    46                        15\n 3  2007                     481                    56                        13\n 4  2008                      86                   134                        11\n 5  2009                     200                    73                         5\n 6  2010                     112                   119                        14\n 7  2011                      35                   113                         6\n 8  2012                     438                   149                        14\n 9  2013                    4263                   460                        36\n10  2014                   46034                   399                       160\n11  2015                    3044                  1083                        44\n12  2016                    1549                   675                        41\n13  2017                    4609                  2112                        76\n14  2018                    3801                  1266                       100\n15  2019                   15378                  5813                       266\n16  2020                     616                   158                         7\n# ℹ abbreviated name: ¹​counties.with.dengue.fever.indigenous\n# ℹ 1 more variable: counties.with.dengue.fever.imported <dbl>\n\n\n\n\nVisualization\n\nlibrary(tidyverse)\nlibrary(magrittr)\ndata <- china_annual_data %>% pivot_longer(cols=2:5, names_to = c(\"type\"), values_to = c(\"count\"))\ndata                                           \n\n# A tibble: 64 × 3\n    year type                                  count\n   <int> <chr>                                 <dbl>\n 1  2005 dengue.cases.indigenous                   0\n 2  2005 dengue.cases.imported                    45\n 3  2005 counties.with.dengue.fever.indigenous     0\n 4  2005 counties.with.dengue.fever.imported      33\n 5  2006 dengue.cases.indigenous                1007\n 6  2006 dengue.cases.imported                    46\n 7  2006 counties.with.dengue.fever.indigenous    15\n 8  2006 counties.with.dengue.fever.imported      33\n 9  2007 dengue.cases.indigenous                 481\n10  2007 dengue.cases.imported                    56\n# ℹ 54 more rows\n\nggplot(data, aes(x=year, y=count, group=type)) +\n  geom_line(aes(col=type)) + geom_point(aes(col=type))"
+  },
+  {
+    "objectID": "world.html",
+    "href": "world.html",
+    "title": "World",
+    "section": "",
+    "text": "Level of Dengue risk around the world\n\nlibrary(denguedatahub)\nhead(level_of_risk)\n\n# A tibble: 6 × 3\n  country      level_of_risk       region\n  <fct>        <fct>               <fct> \n1 Angola       Sporadic/Uncertain  Africa\n2 Benin        Sporadic/Uncertain  Africa\n3 Burkina Faso Frequent/Continuous Africa\n4 Burundi      Sporadic/Uncertain  Africa\n5 Cameroon     Sporadic/Uncertain  Africa\n6 Cape Verde   Sporadic/Uncertain  Africa\n\nskimr::skim(level_of_risk)\n\n\nData summary\n\n\nName\nlevel_of_risk\n\n\nNumber of rows\n148\n\n\nNumber of columns\n3\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\nfactor\n3\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: factor\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nordered\nn_unique\ntop_counts\n\n\n\n\ncountry\n3\n0.98\nFALSE\n145\nAfg: 1, Aks: 1, Ame: 1, Ang: 1\n\n\nlevel_of_risk\n3\n0.98\nFALSE\n3\nFre: 75, Spo: 63, Ris: 7\n\n\nregion\n0\n1.00\nFALSE\n5\nAfr: 47, Ame: 46, Asi: 30, Oce: 22\n\n\n\n\n\n\n\nAnnual number of dengue fever infections around the world from 1990 to 2019 in 225 countries\n\nhead(world_annual)\n\n# A tibble: 6 × 4\n  entity      code   year incidence\n  <chr>       <chr> <dbl>     <dbl>\n1 Afghanistan AFG    1990     23371\n2 Afghanistan AFG    1991     25794\n3 Afghanistan AFG    1992     29766\n4 Afghanistan AFG    1993     32711\n5 Afghanistan AFG    1994     34268\n6 Afghanistan AFG    1995     35823\n\nskimr::skim(world_annual)\n\n\nData summary\n\n\nName\nworld_annual\n\n\nNumber of rows\n6750\n\n\nNumber of columns\n4\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n2\n\n\nnumeric\n2\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nentity\n0\n1.0\n3\n34\n0\n225\n0\n\n\ncode\n690\n0.9\n3\n8\n0\n202\n0\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nyear\n0\n1\n2004.5\n8.66\n1990\n1997\n2004.5\n2012.0\n2019\n▇▇▇▇▇\n\n\nincidence\n0\n1\n1151691.8\n5335582.86\n0\n0\n5664.5\n88842.5\n56878730\n▇▁▁▁▁"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Dengue Data Hub",
@@ -21,39 +35,11 @@
     "text": "Author: Dr Thiyanga S. Talagala\n\n\nFunded by\n\nR consortium, , USA\n\n\nContact: ttalagala@sjp.ac.lk"
   },
   {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "myblog",
-    "section": "",
-    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nMar 18, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nMar 15, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "index.html#dr-thiyanga-s.-talagala",
-    "href": "index.html#dr-thiyanga-s.-talagala",
-    "title": "About",
-    "section": "Dr Thiyanga S. Talagala",
-    "text": "Dr Thiyanga S. Talagala"
-  },
-  {
     "objectID": "note.html",
     "href": "note.html",
     "title": "notes",
     "section": "",
     "text": "Short Description\nThe goal of the Dengue Data Hub is to provide the research community with a unified dataset by collecting worldwide dengue-related data, merged with exogenous variables helpful for a better understanding of the spread of dengue and the reproducibility of research."
-  },
-  {
-    "objectID": "Data.html",
-    "href": "Data.html",
-    "title": "denguedatahub Installation",
-    "section": "",
-    "text": "To access data via the denguedatahub R software package you need to have R programming and Posit software installed in your machine."
-  },
-  {
-    "objectID": "Data.html#installation-denguedatahub",
-    "href": "Data.html#installation-denguedatahub",
-    "title": "denguedatahub Installation",
-    "section": "Installation: denguedatahub",
-    "text": "Installation: denguedatahub\nYou could install the development version from Github using\n\ninstall.packages(\"devtools\")\ndevtools::install_github(\"thiyangt/denguedatahub\")"
   },
   {
     "objectID": "about.html",
@@ -91,32 +77,11 @@
     "text": "Join With Us\nWe invite researchers, public health practitioners, and other interested parties to explore our dataset and collaborate with us to further advance our understanding of dengue fever. Together, we can work towards improving public health outcomes and reducing the burden of this disease on affected communities worldwide.\nIf you possess data on dengue and wish to share it with the world through the denguedatahub, kindly get in touch with us via ttalagala@sjp.ac.lk"
   },
   {
-    "objectID": "world.html",
-    "href": "world.html",
-    "title": "World",
+    "objectID": "singapore.html",
+    "href": "singapore.html",
+    "title": "Singapore",
     "section": "",
-    "text": "Level of Dengue risk around the world\n\nlibrary(denguedatahub)\nhead(level_of_risk)\n\n# A tibble: 6 × 3\n  country      level_of_risk       region\n  <fct>        <fct>               <fct> \n1 Angola       Sporadic/Uncertain  Africa\n2 Benin        Sporadic/Uncertain  Africa\n3 Burkina Faso Frequent/Continuous Africa\n4 Burundi      Sporadic/Uncertain  Africa\n5 Cameroon     Sporadic/Uncertain  Africa\n6 Cape Verde   Sporadic/Uncertain  Africa\n\nskimr::skim(level_of_risk)\n\n\nData summary\n\n\nName\nlevel_of_risk\n\n\nNumber of rows\n148\n\n\nNumber of columns\n3\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\nfactor\n3\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: factor\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nordered\nn_unique\ntop_counts\n\n\n\n\ncountry\n3\n0.98\nFALSE\n145\nAfg: 1, Aks: 1, Ame: 1, Ang: 1\n\n\nlevel_of_risk\n3\n0.98\nFALSE\n3\nFre: 75, Spo: 63, Ris: 7\n\n\nregion\n0\n1.00\nFALSE\n5\nAfr: 47, Ame: 46, Asi: 30, Oce: 22\n\n\n\n\n\n\n\nAnnual number of dengue fever infections around the world from 1990 to 2019 in 225 countries\n\nhead(world_annual)\n\n# A tibble: 6 × 4\n  entity      code   year incidence\n  <chr>       <chr> <dbl>     <dbl>\n1 Afghanistan AFG    1990     23371\n2 Afghanistan AFG    1991     25794\n3 Afghanistan AFG    1992     29766\n4 Afghanistan AFG    1993     32711\n5 Afghanistan AFG    1994     34268\n6 Afghanistan AFG    1995     35823\n\nskimr::skim(world_annual)\n\n\nData summary\n\n\nName\nworld_annual\n\n\nNumber of rows\n6750\n\n\nNumber of columns\n4\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n2\n\n\nnumeric\n2\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nentity\n0\n1.0\n3\n34\n0\n225\n0\n\n\ncode\n690\n0.9\n3\n8\n0\n202\n0\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nyear\n0\n1\n2004.5\n8.66\n1990\n1997\n2004.5\n2012.0\n2019\n▇▇▇▇▇\n\n\nincidence\n0\n1\n1151691.8\n5335582.86\n0\n0\n5664.5\n88842.5\n56878730\n▇▁▁▁▁"
-  },
-  {
-    "objectID": "Data.html#list-of-datasets-inside-denguedatahub",
-    "href": "Data.html#list-of-datasets-inside-denguedatahub",
-    "title": "denguedatahub Installation",
-    "section": "List of datasets inside denguedatahub",
-    "text": "List of datasets inside denguedatahub\n\nlibrary(denguedatahub)\nvcdExtra::datasets(\"denguedatahub\")\n\n                      Item      class      dim\n1     americas_annual_data data.frame 899134x5\n2 cdc_usa_dengue_infection data.frame   9039x6\n3        china_annual_data data.frame     16x5\n4        india_annual_data data.frame    432x5\n5            level_of_risk data.frame    148x3\n6   philippines_daily_data data.frame  32701x5\n7    singapore_weekly_data data.frame    272x3\n8     srilanka_weekly_data data.frame  21960x6\n9             world_annual data.frame   6750x4\n                                                                     Title\n1 Dengue and severe dengue cases and deaths for subregions of the Americas\n2                      Annual number of dengue fever infections in the USA\n3                                             Dengue related data in china\n4                                 DENGUE/DHF situation in India since 2017\n5                                    Level of Dengue risk around the world\n6                   Daily number of dengue fever infections in Philippines\n7                    Weekly number of dengue fever infections in Sri Lanka\n8                    Weekly number of dengue fever infections in Sri Lanka\n9                Annual number of dengue fever infections around the world"
-  },
-  {
-    "objectID": "Data.html#all-objects-inside-denguedatahub",
-    "href": "Data.html#all-objects-inside-denguedatahub",
-    "title": "denguedatahub Installation",
-    "section": "All objects inside denguedatahub",
-    "text": "All objects inside denguedatahub\n\nls(\"package:denguedatahub\") \n\n [1] \":=\"                           \"americas_annual_data\"        \n [3] \"as_label\"                     \"as_name\"                     \n [5] \"cdc_usa_dengue_infection\"     \"china_annual_data\"           \n [7] \"convert_srilanka_wer_to_tidy\" \"enquo\"                       \n [9] \"enquos\"                       \"filter_year_wer\"             \n[11] \"get_addresses\"                \"india_annual_data\"           \n[13] \"level_of_risk\"                \"philippines_daily_data\"      \n[15] \"singapore_weekly_data\"        \"srilanka_weekly_data\"        \n[17] \"world_annual\""
-  },
-  {
-    "objectID": "Data.html#all-functions-inside-denguedatahub",
-    "href": "Data.html#all-functions-inside-denguedatahub",
-    "title": "denguedatahub Installation",
-    "section": "All functions inside denguedatahub",
-    "text": "All functions inside denguedatahub\n\nlsf.str(\"package:denguedatahub\") \n\n:= : function (x, y)  \nas_label : function (x)  \nas_name : function (x)  \nconvert_srilanka_wer_to_tidy : function (year, url.part1 = \"https://www.epid.gov.lk\", url.part2, start.date.first, \n    end.date.first, start.date.last, end.date.last, week.no)  \nenquo : function (arg)  \nenquos : function (..., .named = FALSE, .ignore_empty = c(\"trailing\", \"none\", \"all\"), \n    .ignore_null = c(\"none\", \"all\"), .unquote_names = TRUE, .homonyms = c(\"keep\", \n        \"first\", \"last\", \"error\"), .check_assign = FALSE)  \nfilter_year_wer : function (year, address)  \nget_addresses : function (url)"
+    "text": "Weekly Dengue Cases in Singapore from 2018 to 2023\n\nlibrary(denguedatahub)\nsingapore_weekly_data\n\n# A tibble: 272 × 3\n    year  week cases\n   <dbl> <int> <dbl>\n 1  2018     0    54\n 2  2018     1    45\n 3  2018     2    48\n 4  2018     3    50\n 5  2018     4    50\n 6  2018     5    28\n 7  2018     6    30\n 8  2018     7    37\n 9  2018     8    51\n10  2018     9    37\n# ℹ 262 more rows\n\n\n\n\nVisualizations\n\nlibrary(tidyverse)\nlibrary(plotly)\np1 <- ggplot(singapore_weekly_data, aes(x=as.factor(week), y=cases, col=as.factor(year), group=year)) +\n  geom_line() + geom_point() + xlab(\"week\") + \n  scale_color_discrete(name=\"Year\") + theme(legend.position=\"bottom\", axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))\nggplotly(p1)"
   },
   {
     "objectID": "srilanka.html",
@@ -126,24 +91,31 @@
     "text": "District-wise weekly Dengue cases from 2006 to 2023-present\n\nlibrary(denguedatahub)\nhead(srilanka_weekly_data)\n\n# A tibble: 6 × 6\n   year  week start.date end.date   district    cases\n  <dbl> <dbl> <date>     <date>     <chr>       <dbl>\n1  2006    52 2006-12-23 2006-12-29 Colombo        71\n2  2006    52 2006-12-23 2006-12-29 Gampaha        12\n3  2006    52 2006-12-23 2006-12-29 Kalutara       12\n4  2006    52 2006-12-23 2006-12-29 Kandy          20\n5  2006    52 2006-12-23 2006-12-29 Matale          4\n6  2006    52 2006-12-23 2006-12-29 NuwaraEliya     1\n\nskimr::skim(srilanka_weekly_data)\n\n\nData summary\n\n\nName\nsrilanka_weekly_data\n\n\nNumber of rows\n21960\n\n\nNumber of columns\n6\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n1\n\n\nDate\n2\n\n\nnumeric\n3\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\ndistrict\n0\n1\n5\n12\n0\n29\n0\n\n\n\nVariable type: Date\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nmedian\nn_unique\n\n\n\n\nstart.date\n0\n1\n2006-12-23\n2023-02-25\n2015-01-24\n844\n\n\nend.date\n0\n1\n2006-12-29\n2023-03-03\n2015-01-30\n844\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nyear\n0\n1\n2014.58\n4.68\n2006\n2011\n2015\n2019\n2023\n▆▆▇▆▆\n\n\nweek\n0\n1\n26.44\n15.18\n1\n13\n26\n40\n53\n▇▇▇▇▇\n\n\ncases\n0\n1\n29.62\n81.98\n0\n2\n8\n26\n2631\n▇▁▁▁▁\n\n\n\n\n\n\n\nFunction to extract dengue cases from weekly epidemiological reports published by Epidemiology Unit, Ministry of Health Sri Lanka\n\nad.list <- get_addresses(\"http://www.epid.gov.lk/web/index.php?option=com_content&view=article&id=148&Itemid=449&lang=en\")\nwer2023url <- filter_year_wer(2023, ad.list[1:9])\ndata2023 <- convert_srilanka_wer_to_tidy(year=2023, url.part2=wer2023url, \nstart.date.first = \"2022-12-31\",\nend.date.first = \"2023-01-06\",\nstart.date.last = \"2023-01-28\", \nend.date.last = \"2023-02-03\",\nweek.no=c(52, 1:4))\ndata2023\n\n# A tibble: 130 × 6\n    year  week start.date end.date   district    cases\n   <dbl> <dbl> <date>     <date>     <chr>       <dbl>\n 1  2023    52 2022-12-31 2023-01-06 Colombo        25\n 2  2023    52 2022-12-31 2023-01-06 Gampaha        23\n 3  2023    52 2022-12-31 2023-01-06 Kalutara       74\n 4  2023    52 2022-12-31 2023-01-06 Kandy          50\n 5  2023    52 2022-12-31 2023-01-06 Matale         25\n 6  2023    52 2022-12-31 2023-01-06 NuwaraEliya     3\n 7  2023    52 2022-12-31 2023-01-06 Galle          28\n 8  2023    52 2022-12-31 2023-01-06 Hambantota     13\n 9  2023    52 2022-12-31 2023-01-06 Matara         22\n10  2023    52 2022-12-31 2023-01-06 Jaffna         12\n# ℹ 120 more rows"
   },
   {
-    "objectID": "singapore.html",
-    "href": "singapore.html",
-    "title": "Singapore",
+    "objectID": "Data.html",
+    "href": "Data.html",
+    "title": "denguedatahub Installation",
     "section": "",
-    "text": "Weekly Dengue Cases in Singapore from 2018 to 2023\n\nlibrary(denguedatahub)\nsingapore_weekly_data\n\n# A tibble: 272 × 3\n    year  week cases\n   <dbl> <int> <dbl>\n 1  2018     0    54\n 2  2018     1    45\n 3  2018     2    48\n 4  2018     3    50\n 5  2018     4    50\n 6  2018     5    28\n 7  2018     6    30\n 8  2018     7    37\n 9  2018     8    51\n10  2018     9    37\n# ℹ 262 more rows\n\n\n\n\nVisualizations\n\nlibrary(tidyverse)\nlibrary(plotly)\np1 <- ggplot(singapore_weekly_data, aes(x=as.factor(week), y=cases, col=as.factor(year), group=year)) +\n  geom_line() + geom_point() + xlab(\"week\") + \n  scale_color_discrete(name=\"Year\") + theme(legend.position=\"bottom\", axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))\nggplotly(p1)"
+    "text": "To access data via the denguedatahub R software package you need to have R programming and Posit software installed in your machine."
   },
   {
-    "objectID": "china.html",
-    "href": "china.html",
-    "title": "China",
-    "section": "",
-    "text": "Annual Dengue Cases from 2005 to 2020\n\nlibrary(denguedatahub)\nchina_annual_data\n\n# A tibble: 16 × 5\n    year dengue.cases.indigenous dengue.cases.imported counties.with.dengue.fe…¹\n   <int>                   <dbl>                 <dbl>                     <dbl>\n 1  2005                       0                    45                         0\n 2  2006                    1007                    46                        15\n 3  2007                     481                    56                        13\n 4  2008                      86                   134                        11\n 5  2009                     200                    73                         5\n 6  2010                     112                   119                        14\n 7  2011                      35                   113                         6\n 8  2012                     438                   149                        14\n 9  2013                    4263                   460                        36\n10  2014                   46034                   399                       160\n11  2015                    3044                  1083                        44\n12  2016                    1549                   675                        41\n13  2017                    4609                  2112                        76\n14  2018                    3801                  1266                       100\n15  2019                   15378                  5813                       266\n16  2020                     616                   158                         7\n# ℹ abbreviated name: ¹​counties.with.dengue.fever.indigenous\n# ℹ 1 more variable: counties.with.dengue.fever.imported <dbl>\n\n\n\n\nVisualization\n\nlibrary(tidyverse)\nlibrary(magrittr)\ndata <- china_annual_data %>% pivot_longer(cols=2:5, names_to = c(\"type\"), values_to = c(\"count\"))\ndata                                           \n\n# A tibble: 64 × 3\n    year type                                  count\n   <int> <chr>                                 <dbl>\n 1  2005 dengue.cases.indigenous                   0\n 2  2005 dengue.cases.imported                    45\n 3  2005 counties.with.dengue.fever.indigenous     0\n 4  2005 counties.with.dengue.fever.imported      33\n 5  2006 dengue.cases.indigenous                1007\n 6  2006 dengue.cases.imported                    46\n 7  2006 counties.with.dengue.fever.indigenous    15\n 8  2006 counties.with.dengue.fever.imported      33\n 9  2007 dengue.cases.indigenous                 481\n10  2007 dengue.cases.imported                    56\n# ℹ 54 more rows\n\nggplot(data, aes(x=year, y=count, group=type)) +\n  geom_line(aes(col=type)) + geom_point(aes(col=type))"
+    "objectID": "Data.html#installation-denguedatahub",
+    "href": "Data.html#installation-denguedatahub",
+    "title": "denguedatahub Installation",
+    "section": "Installation: denguedatahub",
+    "text": "Installation: denguedatahub\nYou could install the development version from Github using\n\ninstall.packages(\"devtools\")\ndevtools::install_github(\"thiyangt/denguedatahub\")"
   },
   {
-    "objectID": "singapore.html#weekly-wise-variation",
-    "href": "singapore.html#weekly-wise-variation",
-    "title": "Singapore",
-    "section": "Weekly-wise variation",
-    "text": "Weekly-wise variation\n\nlibrary(tidyverse)\nggplot(singapore_weekly_data, aes(x=as.factor(week), y=cases, col=as.factor(year), group=year)) +\n  geom_line() + geom_point() + xlab(\"week\") +  theme(legend.position=\"bottom\")"
+    "objectID": "Data.html#list-of-datasets-inside-denguedatahub",
+    "href": "Data.html#list-of-datasets-inside-denguedatahub",
+    "title": "denguedatahub Installation",
+    "section": "List of datasets inside denguedatahub",
+    "text": "List of datasets inside denguedatahub\n\nlibrary(denguedatahub)\nvcdExtra::datasets(\"denguedatahub\")\n\n                      Item      class      dim\n1     americas_annual_data data.frame 899134x5\n2 cdc_usa_dengue_infection data.frame   9039x6\n3        china_annual_data data.frame     16x5\n4        india_annual_data data.frame    432x5\n5            level_of_risk data.frame    148x3\n6   philippines_daily_data data.frame  32701x5\n7    singapore_weekly_data data.frame    272x3\n8     srilanka_weekly_data data.frame  21960x6\n9             world_annual data.frame   6750x4\n                                                                     Title\n1 Dengue and severe dengue cases and deaths for subregions of the Americas\n2                      Annual number of dengue fever infections in the USA\n3                                             Dengue related data in china\n4                                 DENGUE/DHF situation in India since 2017\n5                                    Level of Dengue risk around the world\n6                   Daily number of dengue fever infections in Philippines\n7                    Weekly number of dengue fever infections in Sri Lanka\n8                    Weekly number of dengue fever infections in Sri Lanka\n9                Annual number of dengue fever infections around the world"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "myblog",
+    "section": "",
+    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nMar 18, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nMar 15, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
   }
 ]
