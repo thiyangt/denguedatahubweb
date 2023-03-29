@@ -4,7 +4,22 @@ toc: true
 format:
   html:
     theme: default
-jupyter: python3
 ---
 
-# 
+# Annual Dengue Cases from 2005 to 2020
+
+```{r}
+library(denguedatahub)
+china_annual_data
+```
+
+# Visualization
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(magrittr)
+data <- china_annual_data %>% pivot_longer(cols=2:5, names_to = c("type"), values_to = c("count"))
+data                                           
+ggplot(data, aes(x=year, y=count, group=type)) +
+  geom_line(aes(col=type)) + geom_point(aes(col=type))
+```

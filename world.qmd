@@ -4,13 +4,20 @@ toc: true
 format:
   html:
     theme: default
-jupyter: python3
 ---
 
-# 
+# Level of Dengue risk around the world
 
 
 ```{r, echo=TRUE, eval=TRUE}
 library(denguedatahub)
 head(level_of_risk)
+skimr::skim(level_of_risk)
+```
+
+# Annual number of dengue fever infections around the world from 1990 to 2019 in 225 countries
+
+```{r}
+head(world_annual)
+skimr::skim(world_annual)
 ```
