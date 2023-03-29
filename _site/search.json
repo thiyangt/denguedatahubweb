@@ -16,9 +16,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "About",
+    "title": "Dengue Data Hub",
     "section": "",
-    "text": "The goal of the Dengue Data Hub is to provide the research community with a unified dataset by collecting worldwide dengue-related data, merged with exogenous variables helpful for a better understanding of the spread of dengue and the reproducibility of research.\n\nSoftware package\n\n\nTerms of use\nBy using Dengue Data Hub, you agree to our terms of use.\n\n\nAuthors\nDr Thiyanga S. Talagala\n\n\nFunded by"
+    "text": "Author: Dr Thiyanga S. Talagala\n\n\nFunded by\n\n\n\nContact: ttalagala@sjp.ac.lk"
   },
   {
     "objectID": "blog.html",
@@ -26,5 +26,96 @@
     "title": "myblog",
     "section": "",
     "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nMar 18, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nMar 15, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html#dr-thiyanga-s.-talagala",
+    "href": "index.html#dr-thiyanga-s.-talagala",
+    "title": "About",
+    "section": "Dr Thiyanga S. Talagala",
+    "text": "Dr Thiyanga S. Talagala"
+  },
+  {
+    "objectID": "note.html",
+    "href": "note.html",
+    "title": "notes",
+    "section": "",
+    "text": "Short Description\nThe goal of the Dengue Data Hub is to provide the research community with a unified dataset by collecting worldwide dengue-related data, merged with exogenous variables helpful for a better understanding of the spread of dengue and the reproducibility of research."
+  },
+  {
+    "objectID": "Data.html",
+    "href": "Data.html",
+    "title": "denguedatahub Installation",
+    "section": "",
+    "text": "To access data via the denguedatahub R software package you need to have R programming and Posit software installed in your machine."
+  },
+  {
+    "objectID": "Data.html#installation-denguedatahub",
+    "href": "Data.html#installation-denguedatahub",
+    "title": "denguedatahub Installation",
+    "section": "Installation: denguedatahub",
+    "text": "Installation: denguedatahub\nYou could install the development version from Github using\n\ninstall.packages(\"devtools\")\ndevtools::install_github(\"thiyangt/denguedatahub\")"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Welcome to the Dengue Data Hub, a centralized repository for dengue-related data from around the world."
+  },
+  {
+    "objectID": "about.html#our-goal",
+    "href": "about.html#our-goal",
+    "title": "About",
+    "section": "Our Goal",
+    "text": "Our Goal\nOur goal is to provide the research community with a comprehensive and unified dataset that includes both dengue-specific data and exogenous variables that can help improve our understanding of the spread of this disease."
+  },
+  {
+    "objectID": "about.html#what-is-dengue",
+    "href": "about.html#what-is-dengue",
+    "title": "About",
+    "section": "What is Dengue?",
+    "text": "What is Dengue?\nDengue fever is a significant public health concern, with approximately 400 million people infected worldwide each year. The disease is caused by a virus transmitted by Aedes mosquitoes, and its symptoms can range from mild flu-like symptoms to severe and potentially life-threatening dengue hemorrhagic fever. Given its widespread prevalence and the severity of its potential consequences, it is critical to have access to high-quality and comprehensive data to better understand the patterns of disease spread, risk factors, and potential interventions."
+  },
+  {
+    "objectID": "about.html#denguedatahub-r-software-package",
+    "href": "about.html#denguedatahub-r-software-package",
+    "title": "About",
+    "section": "denguedatahub R software package",
+    "text": "denguedatahub R software package\nThe Dengue Data Hub aims to address the need for comprehensive dengue data by collecting, harmonizing, and sharing data from a variety of sources, including public health agencies, research studies, and other relevant organizations via denguedatahub open-source R software package. We work diligently to ensure that the data is of high quality, accurately labeled, and standardized, making it easier for researchers to analyze and compare data from different sources.\nOur dataset includes a broad range of variables, including clinical data, epidemiological data, environmental data, and socioeconomic data. By including these exogenous variables, we hope to enable researchers to identify novel risk factors and develop more accurate predictive models of disease spread.\nThe Dengue Data Hub is committed to promoting open science and reproducibility by making our data freely available to the research community. We believe that by providing high-quality data in a centralized location, we can facilitate collaborative research and accelerate progress towards a better understanding of dengue fever."
+  },
+  {
+    "objectID": "about.html#join-with-us",
+    "href": "about.html#join-with-us",
+    "title": "About",
+    "section": "Join With Us",
+    "text": "Join With Us\nWe invite researchers, public health practitioners, and other interested parties to explore our dataset and collaborate with us to further advance our understanding of dengue fever. Together, we can work towards improving public health outcomes and reducing the burden of this disease on affected communities worldwide.\nIf you possess data on dengue and wish to share it with the world through the denguedatahub, kindly get in touch with us via ttalagala@sjp.ac.lk"
+  },
+  {
+    "objectID": "world.html",
+    "href": "world.html",
+    "title": "World",
+    "section": "",
+    "text": "{r, echo=TRUE, eval=TRUE} library(denguedatahub) head(level_of_risk)"
+  },
+  {
+    "objectID": "Data.html#list-of-datasets-inside-denguedatahub",
+    "href": "Data.html#list-of-datasets-inside-denguedatahub",
+    "title": "denguedatahub Installation",
+    "section": "List of datasets inside denguedatahub",
+    "text": "List of datasets inside denguedatahub\n\nlibrary(denguedatahub)\nvcdExtra::datasets(\"denguedatahub\")\n\n                      Item      class      dim\n1     americas_annual_data data.frame 899134x5\n2 cdc_usa_dengue_infection data.frame   9039x6\n3        china_annual_data data.frame     16x5\n4        india_annual_data data.frame    432x5\n5            level_of_risk data.frame    148x3\n6   philippines_daily_data data.frame  32701x5\n7    singapore_weekly_data data.frame    272x3\n8     srilanka_weekly_data data.frame  21960x6\n9             world_annual data.frame   6750x4\n                                                                     Title\n1 Dengue and severe dengue cases and deaths for subregions of the Americas\n2                      Annual number of dengue fever infections in the USA\n3                                             Dengue related data in china\n4                                 DENGUE/DHF situation in India since 2017\n5                                    Level of Dengue risk around the world\n6                   Daily number of dengue fever infections in Philippines\n7                    Weekly number of dengue fever infections in Sri Lanka\n8                    Weekly number of dengue fever infections in Sri Lanka\n9                Annual number of dengue fever infections around the world"
+  },
+  {
+    "objectID": "Data.html#all-objects-inside-denguedatahub",
+    "href": "Data.html#all-objects-inside-denguedatahub",
+    "title": "denguedatahub Installation",
+    "section": "All objects inside denguedatahub",
+    "text": "All objects inside denguedatahub\n\nls(\"package:denguedatahub\") \n\n [1] \":=\"                           \"americas_annual_data\"        \n [3] \"as_label\"                     \"as_name\"                     \n [5] \"cdc_usa_dengue_infection\"     \"china_annual_data\"           \n [7] \"convert_srilanka_wer_to_tidy\" \"enquo\"                       \n [9] \"enquos\"                       \"filter_year_wer\"             \n[11] \"get_addresses\"                \"india_annual_data\"           \n[13] \"level_of_risk\"                \"philippines_daily_data\"      \n[15] \"singapore_weekly_data\"        \"srilanka_weekly_data\"        \n[17] \"world_annual\""
+  },
+  {
+    "objectID": "Data.html#all-functions-inside-denguedatahub",
+    "href": "Data.html#all-functions-inside-denguedatahub",
+    "title": "denguedatahub Installation",
+    "section": "All functions inside denguedatahub",
+    "text": "All functions inside denguedatahub\n\nlsf.str(\"package:denguedatahub\") \n\n:= : function (x, y)  \nas_label : function (x)  \nas_name : function (x)  \nconvert_srilanka_wer_to_tidy : function (year, url.part1 = \"https://www.epid.gov.lk\", url.part2, start.date.first, \n    end.date.first, start.date.last, end.date.last, week.no)  \nenquo : function (arg)  \nenquos : function (..., .named = FALSE, .ignore_empty = c(\"trailing\", \"none\", \"all\"), \n    .ignore_null = c(\"none\", \"all\"), .unquote_names = TRUE, .homonyms = c(\"keep\", \n        \"first\", \"last\", \"error\"), .check_assign = FALSE)  \nfilter_year_wer : function (year, address)  \nget_addresses : function (url)"
   }
 ]

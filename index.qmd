@@ -1,31 +1,25 @@
 ---
-title: "About"
+title: ""
 image: cover.png
 about:
   template: marquee
   links:
     - icon: twitter
       text: Twitter
-      href: https://twitter.com
+      href: https://twitter.com/thiyangt
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/thiyanga-talagala-24bb63134/
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/thiyangt/denguedatahub
 ---
 
-The goal of the Dengue Data Hub is to provide the research community with a unified dataset by collecting worldwide dengue-related data, merged with exogenous variables helpful for a better understanding of the spread of dengue and the reproducibility of research.
+# Author: [Dr Thiyanga S. Talagala](https://thiyanga.netlify.app/)
 
-# Software package
-
-
-# Terms of use
-
-By using Dengue Data Hub, you agree to our terms of use.
-
-# Authors
-
-Dr Thiyanga S. Talagala
 
 # Funded by
+
+![](consortium.png)
+
+# Contact: ttalagala@sjp.ac.lk

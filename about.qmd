@@ -1,0 +1,35 @@
+---
+title: "About"
+toc: true
+format:
+  html:
+    theme: default
+jupyter: python3
+---
+
+
+
+Welcome to the Dengue Data Hub, a centralized repository for dengue-related data from around the world. 
+
+## Our Goal
+
+Our goal is to provide the research community with a comprehensive and unified dataset that includes both dengue-specific data and exogenous variables that can help improve our understanding of the spread of this disease.
+
+## What is Dengue?
+
+Dengue fever is a significant public health concern, with approximately 400 million people infected worldwide each year. The disease is caused by a virus transmitted by Aedes mosquitoes, and its symptoms can range from mild flu-like symptoms to severe and potentially life-threatening dengue hemorrhagic fever. Given its widespread prevalence and the severity of its potential consequences, it is critical to have access to high-quality and comprehensive data to better understand the patterns of disease spread, risk factors, and potential interventions.
+
+## `denguedatahub` R software package
+
+The Dengue Data Hub aims to address the need for comprehensive dengue data by collecting, harmonizing, and sharing data from a variety of sources, including public health agencies, research studies, and other relevant organizations via `denguedatahub` open-source R software package. We work diligently to ensure that the data is of high quality, accurately labeled, and standardized, making it easier for researchers to analyze and compare data from different sources.
+
+Our dataset includes a broad range of variables, including clinical data, epidemiological data, environmental data, and socioeconomic data. By including these exogenous variables, we hope to enable researchers to identify novel risk factors and develop more accurate predictive models of disease spread.
+
+The Dengue Data Hub is committed to promoting open science and reproducibility by making our data freely available to the research community. We believe that by providing high-quality data in a centralized location, we can facilitate collaborative research and accelerate progress towards a better understanding of dengue fever.
+
+## Join With Us
+
+We invite researchers, public health practitioners, and other interested parties to explore our dataset and collaborate with us to further advance our understanding of dengue fever. Together, we can work towards improving public health outcomes and reducing the burden of this disease on affected communities worldwide.
+
+If you possess data on dengue and wish to share it with the world through the denguedatahub, kindly get in touch with us via ttalagala@sjp.ac.lk
+

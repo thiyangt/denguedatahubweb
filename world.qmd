@@ -8,3 +8,9 @@ jupyter: python3
 ---
 
 # 
+
+
+```{r, echo=TRUE, eval=TRUE}
+library(denguedatahub)
+head(level_of_risk)
+```

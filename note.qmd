@@ -1,0 +1,11 @@
+---
+title: "notes"
+format:
+  html:
+    theme: default
+---
+
+# Short Description
+
+The goal of the Dengue Data Hub is to provide the research community with a unified dataset by collecting worldwide dengue-related data, merged with exogenous variables helpful for a better understanding of the spread of dengue and the reproducibility of research.
+

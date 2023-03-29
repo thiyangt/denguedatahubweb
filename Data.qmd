@@ -1,0 +1,28 @@
+---
+title: "denguedatahub Installation"
+toc: true
+format:
+  html:
+    theme: default
+---
+
+![](logo.png)
+
+To access data via the `denguedatahub` R software package you need to have [R programming](https://www.r-project.org/) and [Posit](https://posit.co/) software installed in your machine.
+
+## Installation: `denguedatahub` 
+
+You could install the development version from Github using
+
+```{r, eval=FALSE}
+install.packages("devtools")
+devtools::install_github("thiyangt/denguedatahub")
+```
+
+## List of datasets inside `denguedatahub`
+
+```{r, echo=TRUE, eval=TRUE}
+library(denguedatahub)
+vcdExtra::datasets("denguedatahub")
+```
+

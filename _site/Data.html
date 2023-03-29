@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Dengue Data Hub - About</title>
+<title>Dengue Data Hub - denguedatahub Installation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -94,11 +157,11 @@ ga('send', {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page">
+    <a class="nav-link" href="./about.html">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Data.html">
+    <a class="nav-link active" href="./Data.html" aria-current="page">
  <span class="menu-text">denguedatahub Installation</span></a>
   </li>  
   <li class="nav-item">
@@ -146,10 +209,8 @@ ga('send', {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#our-goal" id="toc-our-goal" class="nav-link active" data-scroll-target="#our-goal">Our Goal</a></li>
-  <li><a href="#what-is-dengue" id="toc-what-is-dengue" class="nav-link" data-scroll-target="#what-is-dengue">What is Dengue?</a></li>
-  <li><a href="#denguedatahub-r-software-package" id="toc-denguedatahub-r-software-package" class="nav-link" data-scroll-target="#denguedatahub-r-software-package"><code>denguedatahub</code> R software package</a></li>
-  <li><a href="#join-with-us" id="toc-join-with-us" class="nav-link" data-scroll-target="#join-with-us">Join With Us</a></li>
+  <li><a href="#installation-denguedatahub" id="toc-installation-denguedatahub" class="nav-link active" data-scroll-target="#installation-denguedatahub">Installation: <code>denguedatahub</code></a></li>
+  <li><a href="#list-of-datasets-inside-denguedatahub" id="toc-list-of-datasets-inside-denguedatahub" class="nav-link" data-scroll-target="#list-of-datasets-inside-denguedatahub">List of datasets inside <code>denguedatahub</code></a></li>
   </ul>
 </nav>
     </div>
@@ -158,7 +219,7 @@ ga('send', {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">denguedatahub Installation</h1>
 </div>
 
 
@@ -173,25 +234,44 @@ ga('send', {
 
 </header>
 
-<p>Welcome to the Dengue Data Hub, a centralized repository for dengue-related data from around the world.</p>
-<section id="our-goal" class="level2">
-<h2 class="anchored" data-anchor-id="our-goal">Our Goal</h2>
-<p>Our goal is to provide the research community with a comprehensive and unified dataset that includes both dengue-specific data and exogenous variables that can help improve our understanding of the spread of this disease.</p>
+<p><img src="logo.png" class="img-fluid"></p>
+<p>To access data via the <code>denguedatahub</code> R software package you need to have <a href="https://www.r-project.org/">R programming</a> and <a href="https://posit.co/">Posit</a> software installed in your machine.</p>
+<section id="installation-denguedatahub" class="level2">
+<h2 class="anchored" data-anchor-id="installation-denguedatahub">Installation: <code>denguedatahub</code></h2>
+<p>You could install the development version from Github using</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"thiyangt/denguedatahub"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="what-is-dengue" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-dengue">What is Dengue?</h2>
-<p>Dengue fever is a significant public health concern, with approximately 400 million people infected worldwide each year. The disease is caused by a virus transmitted by Aedes mosquitoes, and its symptoms can range from mild flu-like symptoms to severe and potentially life-threatening dengue hemorrhagic fever. Given its widespread prevalence and the severity of its potential consequences, it is critical to have access to high-quality and comprehensive data to better understand the patterns of disease spread, risk factors, and potential interventions.</p>
-</section>
-<section id="denguedatahub-r-software-package" class="level2">
-<h2 class="anchored" data-anchor-id="denguedatahub-r-software-package"><code>denguedatahub</code> R software package</h2>
-<p>The Dengue Data Hub aims to address the need for comprehensive dengue data by collecting, harmonizing, and sharing data from a variety of sources, including public health agencies, research studies, and other relevant organizations via <code>denguedatahub</code> open-source R software package. We work diligently to ensure that the data is of high quality, accurately labeled, and standardized, making it easier for researchers to analyze and compare data from different sources.</p>
-<p>Our dataset includes a broad range of variables, including clinical data, epidemiological data, environmental data, and socioeconomic data. By including these exogenous variables, we hope to enable researchers to identify novel risk factors and develop more accurate predictive models of disease spread.</p>
-<p>The Dengue Data Hub is committed to promoting open science and reproducibility by making our data freely available to the research community. We believe that by providing high-quality data in a centralized location, we can facilitate collaborative research and accelerate progress towards a better understanding of dengue fever.</p>
-</section>
-<section id="join-with-us" class="level2">
-<h2 class="anchored" data-anchor-id="join-with-us">Join With Us</h2>
-<p>We invite researchers, public health practitioners, and other interested parties to explore our dataset and collaborate with us to further advance our understanding of dengue fever. Together, we can work towards improving public health outcomes and reducing the burden of this disease on affected communities worldwide.</p>
-<p>If you possess data on dengue and wish to share it with the world through the denguedatahub, kindly get in touch with us via ttalagala@sjp.ac.lk</p>
+<section id="list-of-datasets-inside-denguedatahub" class="level2">
+<h2 class="anchored" data-anchor-id="list-of-datasets-inside-denguedatahub">List of datasets inside <code>denguedatahub</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(denguedatahub)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>vcdExtra<span class="sc">::</span><span class="fu">datasets</span>(<span class="st">"denguedatahub"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      Item      class      dim
+1     americas_annual_data data.frame 899134x5
+2 cdc_usa_dengue_infection data.frame   9039x6
+3        china_annual_data data.frame     16x5
+4        india_annual_data data.frame    432x5
+5            level_of_risk data.frame    148x3
+6   philippines_daily_data data.frame  32701x5
+7    singapore_weekly_data data.frame    272x3
+8     srilanka_weekly_data data.frame  21960x6
+9             world_annual data.frame   6750x4
+                                                                     Title
+1 Dengue and severe dengue cases and deaths for subregions of the Americas
+2                      Annual number of dengue fever infections in the USA
+3                                             Dengue related data in china
+4                                 DENGUE/DHF situation in India since 2017
+5                                    Level of Dengue risk around the world
+6                   Daily number of dengue fever infections in Philippines
+7                    Weekly number of dengue fever infections in Sri Lanka
+8                    Weekly number of dengue fever infections in Sri Lanka
+9                Annual number of dengue fever infections around the world</code></pre>
+</div>
+</div>
 
 
 </section>
