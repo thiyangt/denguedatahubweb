@@ -3,7 +3,7 @@ project:
 
 website:
   title: "Dengue Data Hub"
-  google-analytics: "UA-XXXXXXXX"
+  google-analytics: "UA-262479182"
   navbar:
     right:
       - about.qmd
