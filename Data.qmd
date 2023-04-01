@@ -6,7 +6,7 @@ format:
     theme: default
 ---
 
-![](logo.png)
+ <img src="logo.png" align="right" height="180"/>
 
 To access data via the `denguedatahub` R software package you need to have [R programming](https://www.r-project.org/) and [Posit](https://posit.co/) software installed in your machine.
 
