@@ -13,13 +13,26 @@ library(denguedatahub)
 china_annual_data
 ```
 
-# Visualization
+## Visualize `china_annual_data`
+
+```{r}
+visdat::vis_dat(china_annual_data)
+```
+
+# Applications
 
 ```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(magrittr)
+library(plotly)
+
 data <- china_annual_data %>% pivot_longer(cols=2:5, names_to = c("type"), values_to = c("count"))
 data                                           
-ggplot(data, aes(x=year, y=count, group=type)) +
-  geom_line(aes(col=type)) + geom_point(aes(col=type))
+p1 <- ggplot(data, aes(x=year, y=count, group=type)) +
+  geom_line(aes(col=type)) + geom_point(aes(col=type)) + scale_fill_brewer(palette = "Dark2") +  theme(legend.position = "bottom") 
+plotly::ggplotly(p1) %>%
+  layout(legend = list(
+      orientation = "h"
+    )
+  )
 ```

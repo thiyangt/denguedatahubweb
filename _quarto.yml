@@ -13,6 +13,7 @@ website:
       - singapore.qmd
       - china.qmd
       - viz.qmd
+      - commonfunctions.qmd
       - icon: github
         href: https://github.com/
       - icon: twitter

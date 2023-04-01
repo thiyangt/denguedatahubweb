@@ -11,13 +11,63 @@ format:
 
 ```{r, echo=TRUE, eval=TRUE}
 library(denguedatahub)
-head(level_of_risk)
-skimr::skim(level_of_risk)
+level_of_risk
+
+```
+
+## Visualize `level_of_risk` dataset
+
+```{r}
+library(visdat)
+vis_dat(level_of_risk) 
+```
+
+## Summarize and Visualize `level_of_risk`data
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+tab1 <- level_of_risk %>% group_by(region, level_of_risk) %>%
+  summarise(count = n(), .groups = 'drop') 
+knitr::kable(tab1)
+ggplot(tab1, aes(region, count)) + 
+  geom_bar(aes(fill = level_of_risk), stat = "identity", position = "dodge") + theme(legend.position = "bottom") + xlab("Region") + ylab("Number of countries") + scale_fill_brewer(palette = "Dark2")
 ```
 
 # Annual number of dengue fever infections around the world from 1990 to 2019 in 225 countries
 
 ```{r}
-head(world_annual)
-skimr::skim(world_annual)
+world_annual
+```
+
+## visualise  `world_annual` dataset
+
+```{r}
+vis_dat(world_annual) 
+```
+
+## Spatial visualization
+
+```{r, warning=FALSE, message=FALSE}
+library(denguedatahub)
+library(ggplot2)
+library(maps)
+library(magrittr)
+library(viridis)
+
+worldMap <- map_data("world")
+worlddata <- dplyr::left_join(worldMap, world_annual, by = c(region = "entity"))
+
+worlddata <- worlddata %>%
+  dplyr::mutate(dengue.present = dplyr::case_when(incidence == 0 ~ "no", incidence!=0 ~ "yes", incidence == NA ~ "NA"))
+
+worlddata2019 <- dplyr::filter(worlddata, year==2019)
+ggplot(worlddata2019, aes(x = long,
+           y = lat,
+           group=group,
+           fill = dengue.present)) +
+  geom_polygon(color = "black") +
+  labs(x = "Longitude",
+       y = "Latitude") +
+  theme(legend.position = "bottom") + scale_fill_brewer(palette = "Dark2")
+
 ```

@@ -10,10 +10,28 @@ format:
 
 ```{r, echo=TRUE, eval=TRUE}
 library(denguedatahub)
-head(srilanka_weekly_data)
-skimr::skim(srilanka_weekly_data)
+srilanka_weekly_data
+
 ```
 
+## Visualize `srilanka_weekly_data`
+
+```{r}
+visdat::vis_dat(srilanka_weekly_data)
+```
+
+## Time series visualization 
+
+```{r, warning=FALSE, message=FALSE}
+library(plotly)
+library(viridis)
+
+#  Visualizing colombo district cases
+srilanka_weekly_data %>%  filter(district=="Colombo") %>%
+ggplot(aes(x=start.date, y=cases, )) + geom_line() 
+
+
+```
 
 # Function to extract dengue cases from weekly epidemiological reports published by [Epidemiology Unit, Ministry of Health Sri Lanka](https://www.epid.gov.lk/web/index.php?option=com_content&view=article&id=148&Itemid=449&lang=en)
 

@@ -1,0 +1,12 @@
+---
+title: "Common functions"
+toc: true
+format:
+  html:
+    theme: default
+---
+
+# Visualizing World Data
+
+
+

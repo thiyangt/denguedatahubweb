@@ -13,13 +13,20 @@ library(denguedatahub)
 singapore_weekly_data
 ```
 
-# Visualizations
+# Visualizing `singapore_weekly_data`
+
+```{r}
+visdat::vis_dat(singapore_weekly_data)
+```
+
+
+# Visualizations of temporal patterns
 
 ```{r, comment=NA, message=FALSE, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(plotly)
 p1 <- ggplot(singapore_weekly_data, aes(x=as.factor(week), y=cases, col=as.factor(year), group=year)) +
   geom_line() + geom_point() + xlab("week") + 
-  scale_color_discrete(name="Year") + theme(legend.position="bottom", axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+  scale_color_discrete(name="Year") +  theme(legend.position="bottom", axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ggplotly(p1)
 ```
