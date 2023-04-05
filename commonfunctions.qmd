@@ -18,11 +18,33 @@ format:
 
 # Application of `min_max` function
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, fig.width=20, fig.height=15}
 library(tidyverse)
-
+library(denguedatahub)
+library(viridis)
+library(lubridate)
+ggplot(srilanka_weekly_data, aes(y=district, x=start.date, fill=cases)) + 
+  geom_tile() + 
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +  geom_raster() +scale_fill_viridis_c() + ylab("Year") + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
 
 ```
 
+
+## Apply min-max transformation using `min_max` function
+
+```{r}
+srilanka.minmax <- min_max(srilanka_weekly_data, 
+      variable.to.minmax="cases" , local = TRUE, group.var="district")
+srilanka.minmax
+```
+
+
+```{r, fig.width=20, fig.height=15}
+ggplot(srilanka.minmax, aes(y=district, x=start.date, fill=minmax.group)) + 
+  geom_tile() + 
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") + geom_raster() +scale_fill_viridis_c() + ylab("Year") + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
 
 
