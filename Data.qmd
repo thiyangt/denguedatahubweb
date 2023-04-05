@@ -6,6 +6,16 @@ format:
     theme: default
 ---
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MMF7S9CQZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MMF7S9CQZW');
+</script>
+
  <img src="logo.png" align="right" height="180"/>
 
 To access data via the `denguedatahub` R software package you need to have [R programming](https://www.r-project.org/) and [Posit](https://posit.co/) software installed in your machine.
