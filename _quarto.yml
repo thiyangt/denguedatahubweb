@@ -20,9 +20,9 @@ website:
         href: https://twitter.com
 format:
   html:
+    page-layout: full
     theme: yeti
-    css: styles.css
+    css: style.css
 
-  
 
 

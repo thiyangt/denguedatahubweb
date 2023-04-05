@@ -22,15 +22,17 @@ visdat::vis_dat(srilanka_weekly_data)
 
 ## Time series visualization 
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, fig.height=20, fig.width=15}
 library(plotly)
 library(viridis)
 
 #  Visualizing colombo district cases
 number_ticks <- function(n) {function(limits) pretty(limits, n)}
 srilanka_weekly_data %>%  
-ggplot(aes(x=start.date, y=cases)) + geom_line()  + scale_x_date(date_breaks = "1 year", date_labels = "%Y") + 
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+ facet_wrap(vars(district), scales = "free_y", ncol=3)
+ggplot(aes(x=start.date, y=cases)) + geom_line()  + 
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  facet_wrap(vars(district), scales = "free_y", ncol=5)
 
 
 ```
