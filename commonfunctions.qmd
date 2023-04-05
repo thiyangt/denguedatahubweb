@@ -40,7 +40,7 @@ srilanka.minmax
 ```
 
 
-```{r, fig.width=20, fig.height=15}
+```{r, fig.width=20, fig.height=15, warning=FALSE}
 ggplot(srilanka.minmax, aes(y=district, x=start.date, fill=minmax.group)) + 
   geom_tile() + 
   scale_x_date(date_breaks = "1 year", date_labels = "%Y") + geom_raster() +scale_fill_viridis_c() + ylab("Year") + 
