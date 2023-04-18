@@ -181,12 +181,12 @@ ga('send', {
  <span class="menu-text">China</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./viz.html">
- <span class="menu-text">Interactive maps</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link active" href="./commonfunctions.html" aria-current="page">
  <span class="menu-text">Common functions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./viz.html">
+ <span class="menu-text">Interactive Data Explorer</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
@@ -251,6 +251,7 @@ ga('send', {
 </script>
 <section id="application-of-min_max-function" class="level1">
 <h1>Application of <code>min_max</code> function</h1>
+<p>Visualizing multiple time series can be a challenging task due to issues like overlapping and scale differences. One popular approach to visualize all time series in a single plot is by using a heat map. In this context, we have written a code to visualize the dengue data for all districts in Sri Lanka, covering the period from 2008 to the present. This visualization can be useful in identifying the dominating districts in terms of dengue outbreaks.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(denguedatahub)</span>
@@ -258,14 +259,17 @@ ga('send', {
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(srilanka_weekly_data, <span class="fu">aes</span>(<span class="at">y=</span>district, <span class="at">x=</span>start.date, <span class="at">fill=</span>cases)) <span class="sc">+</span> </span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span> </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span>  <span class="fu">geom_raster</span>() <span class="sc">+</span><span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Year"</span>) <span class="sc">+</span> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span>  <span class="fu">geom_raster</span>() <span class="sc">+</span><span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"District"</span>) <span class="sc">+</span> </span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="commonfunctions_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="1920"></p>
 </div>
 </div>
+<p>However, relying solely on the above heat map can sometimes make it difficult to identify whether all districts have a similar pattern or not. For instance, it may not be immediately clear whether the peak periods of all districts are similar or not. To overcome this challenge, we can apply a min-max transformation to each series based on its minimum and maximum values. This can help us to compare the patterns across different districts more easily, and gain insights into the temporal dynamics of dengue outbreaks in Sri Lanka.</p>
+<p>The <code>min_max</code> function with the parameter local=TRUE helps you easily normalize the series using the min-max transformation with respect to each series minimum and maximum value.</p>
 <section id="apply-min-max-transformation-using-min_max-function" class="level2">
 <h2 class="anchored" data-anchor-id="apply-min-max-transformation-using-min_max-function">Apply min-max transformation using <code>min_max</code> function</h2>
+<p>Step 1: Apply min-max transformation</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>srilanka.minmax <span class="ot">&lt;-</span> <span class="fu">min_max</span>(srilanka_weekly_data, </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">variable.to.minmax=</span><span class="st">"cases"</span> , <span class="at">local =</span> <span class="cn">TRUE</span>, <span class="at">group.var=</span><span class="st">"district"</span>)</span>
@@ -289,6 +293,7 @@ ga('send', {
 # ℹ 1 more variable: minmax.group &lt;dbl&gt;</code></pre>
 </div>
 </div>
+<p>Step 2: Heat map on the transformed series</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(srilanka.minmax, <span class="fu">aes</span>(<span class="at">y=</span>district, <span class="at">x=</span>start.date, <span class="at">fill=</span>minmax.group)) <span class="sc">+</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span> </span>

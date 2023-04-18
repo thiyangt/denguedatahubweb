@@ -102,7 +102,7 @@
     "href": "commonfunctions.html",
     "title": "Common functions",
     "section": "",
-    "text": "library(tidyverse)\nlibrary(denguedatahub)\nlibrary(viridis)\nlibrary(lubridate)\nggplot(srilanka_weekly_data, aes(y=district, x=start.date, fill=cases)) + \n  geom_tile() + \n  scale_x_date(date_breaks = \"1 year\", date_labels = \"%Y\") +  geom_raster() +scale_fill_viridis_c() + ylab(\"Year\") + \n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) \n\n\n\n\n\n\n\nsrilanka.minmax <- min_max(srilanka_weekly_data, \n      variable.to.minmax=\"cases\" , local = TRUE, group.var=\"district\")\nsrilanka.minmax\n\n# A tibble: 21,960 × 9\n# Groups:   district [26]\n    year  week start.date end.date   district    cases min.group max.group\n   <dbl> <dbl> <date>     <date>     <chr>       <dbl>     <dbl>     <dbl>\n 1  2006    52 2006-12-23 2006-12-29 Colombo        71         0      1972\n 2  2006    52 2006-12-23 2006-12-29 Gampaha        12         0      2631\n 3  2006    52 2006-12-23 2006-12-29 Kalutara       12         0       703\n 4  2006    52 2006-12-23 2006-12-29 Kandy          20         0      1062\n 5  2006    52 2006-12-23 2006-12-29 Matale          4         0       260\n 6  2006    52 2006-12-23 2006-12-29 NuwaraEliya     1         0        85\n 7  2006    52 2006-12-23 2006-12-29 Galle           1         0       332\n 8  2006    52 2006-12-23 2006-12-29 Hambanthota     1         0       147\n 9  2006    52 2006-12-23 2006-12-29 Matara         11         0       489\n10  2006    52 2006-12-23 2006-12-29 Jaffna          0         0       931\n# ℹ 21,950 more rows\n# ℹ 1 more variable: minmax.group <dbl>\n\n\n\nggplot(srilanka.minmax, aes(y=district, x=start.date, fill=minmax.group)) + \n  geom_tile() + \n  scale_x_date(date_breaks = \"1 year\", date_labels = \"%Y\") + geom_raster() +scale_fill_viridis_c() + ylab(\"Year\") + \n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
+    "text": "Visualizing multiple time series can be a challenging task due to issues like overlapping and scale differences. One popular approach to visualize all time series in a single plot is by using a heat map. In this context, we have written a code to visualize the dengue data for all districts in Sri Lanka, covering the period from 2008 to the present. This visualization can be useful in identifying the dominating districts in terms of dengue outbreaks.\n\nlibrary(tidyverse)\nlibrary(denguedatahub)\nlibrary(viridis)\nlibrary(lubridate)\nggplot(srilanka_weekly_data, aes(y=district, x=start.date, fill=cases)) + \n  geom_tile() + \n  scale_x_date(date_breaks = \"1 year\", date_labels = \"%Y\") +  geom_raster() +scale_fill_viridis_c() + ylab(\"District\") + \n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) \n\n\n\n\nHowever, relying solely on the above heat map can sometimes make it difficult to identify whether all districts have a similar pattern or not. For instance, it may not be immediately clear whether the peak periods of all districts are similar or not. To overcome this challenge, we can apply a min-max transformation to each series based on its minimum and maximum values. This can help us to compare the patterns across different districts more easily, and gain insights into the temporal dynamics of dengue outbreaks in Sri Lanka.\nThe min_max function with the parameter local=TRUE helps you easily normalize the series using the min-max transformation with respect to each series minimum and maximum value.\n\n\nStep 1: Apply min-max transformation\n\nsrilanka.minmax <- min_max(srilanka_weekly_data, \n      variable.to.minmax=\"cases\" , local = TRUE, group.var=\"district\")\nsrilanka.minmax\n\n# A tibble: 21,960 × 9\n# Groups:   district [26]\n    year  week start.date end.date   district    cases min.group max.group\n   <dbl> <dbl> <date>     <date>     <chr>       <dbl>     <dbl>     <dbl>\n 1  2006    52 2006-12-23 2006-12-29 Colombo        71         0      1972\n 2  2006    52 2006-12-23 2006-12-29 Gampaha        12         0      2631\n 3  2006    52 2006-12-23 2006-12-29 Kalutara       12         0       703\n 4  2006    52 2006-12-23 2006-12-29 Kandy          20         0      1062\n 5  2006    52 2006-12-23 2006-12-29 Matale          4         0       260\n 6  2006    52 2006-12-23 2006-12-29 NuwaraEliya     1         0        85\n 7  2006    52 2006-12-23 2006-12-29 Galle           1         0       332\n 8  2006    52 2006-12-23 2006-12-29 Hambanthota     1         0       147\n 9  2006    52 2006-12-23 2006-12-29 Matara         11         0       489\n10  2006    52 2006-12-23 2006-12-29 Jaffna          0         0       931\n# ℹ 21,950 more rows\n# ℹ 1 more variable: minmax.group <dbl>\n\n\nStep 2: Heat map on the transformed series\n\nggplot(srilanka.minmax, aes(y=district, x=start.date, fill=minmax.group)) + \n  geom_tile() + \n  scale_x_date(date_breaks = \"1 year\", date_labels = \"%Y\") + geom_raster() +scale_fill_viridis_c() + ylab(\"Year\") + \n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
   },
   {
     "objectID": "srilanka.html",
@@ -145,5 +145,47 @@
     "title": "Interactive Data Explorer",
     "section": "",
     "text": "Click here to view the app.\nVideo"
+  },
+  {
+    "objectID": "collaborate.html",
+    "href": "collaborate.html",
+    "title": "Collaborate with us",
+    "section": "",
+    "text": "We invite researchers, public health practitioners, and other interested parties to explore our dataset and collaborate with us to further advance our understanding of dengue fever. Together, we can work towards improving public health outcomes and reducing the burden of this disease on affected communities worldwide.\nThere are few different ways to colloborate with us:"
+  },
+  {
+    "objectID": "collaborate.html#our-pledge",
+    "href": "collaborate.html#our-pledge",
+    "title": "Collaborate with us",
+    "section": "Our Pledge",
+    "text": "Our Pledge\nWe as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.\nWe pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community."
+  },
+  {
+    "objectID": "collaborate.html#our-standards",
+    "href": "collaborate.html#our-standards",
+    "title": "Collaborate with us",
+    "section": "Our Standards",
+    "text": "Our Standards\nExamples of behavior that contributes to a positive environment for our community include:\n\nDemonstrating empathy and kindness toward other people\nBeing respectful of differing opinions, viewpoints, and experiences\nGiving and gracefully accepting constructive feedback\nAccepting responsibility and apologizing to those affected by our mistakes, and learning from the experience\nFocusing on what is best not just for us as individuals, but for the overall community\n\nExamples of unacceptable behavior include:\n\nThe use of sexualized language or imagery, and sexual attention or advances of any kind\nTrolling, insulting or derogatory comments, and personal or political attacks\nPublic or private harassment\nPublishing others’ private information, such as a physical or email address, without their explicit permission\nOther conduct which could reasonably be considered inappropriate in a professional setting"
+  },
+  {
+    "objectID": "collaborate.html#enforcement-responsibilities",
+    "href": "collaborate.html#enforcement-responsibilities",
+    "title": "Collaborate with us",
+    "section": "Enforcement Responsibilities",
+    "text": "Enforcement Responsibilities\nCommunity leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.\nCommunity leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate."
+  },
+  {
+    "objectID": "collaborate.html#scope",
+    "href": "collaborate.html#scope",
+    "title": "Collaborate with us",
+    "section": "Scope",
+    "text": "Scope\nThis Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event."
+  },
+  {
+    "objectID": "collaborate.html#attribution",
+    "href": "collaborate.html#attribution",
+    "title": "Collaborate with us",
+    "section": "Attribution",
+    "text": "Attribution\nThis Code of Conduct is adapted from the [Contributor Covenant][homepage], version 2.1, available at [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html][v2.1]."
   }
 ]

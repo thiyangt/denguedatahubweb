@@ -18,6 +18,10 @@ format:
 
 # Application of `min_max` function
 
+Visualizing multiple time series can be a challenging task due to issues like overlapping and scale differences. One popular approach to visualize all time series in a single plot is by using a heat map. In this context, we have written a code to visualize the dengue data for all districts in Sri Lanka, covering the period from 2008 to the present. This visualization can be useful in identifying the dominating districts in terms of dengue outbreaks.
+
+
+
 ```{r, warning=FALSE, message=FALSE, fig.width=20, fig.height=15}
 library(tidyverse)
 library(denguedatahub)
@@ -25,13 +29,19 @@ library(viridis)
 library(lubridate)
 ggplot(srilanka_weekly_data, aes(y=district, x=start.date, fill=cases)) + 
   geom_tile() + 
-  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +  geom_raster() +scale_fill_viridis_c() + ylab("Year") + 
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +  geom_raster() +scale_fill_viridis_c() + ylab("District") + 
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
 
 ```
 
 
+However, relying solely on the above heat map can sometimes make it difficult to identify whether all districts have a similar pattern or not. For instance, it may not be immediately clear whether the peak periods of all districts are similar or not. To overcome this challenge, we can apply a min-max transformation to each series based on its minimum and maximum values. This can help us to compare the patterns across different districts more easily, and gain insights into the temporal dynamics of dengue outbreaks in Sri Lanka.
+
+The `min_max` function with the parameter local=TRUE helps you easily normalize the series using the min-max transformation with respect to each series minimum and maximum value.
+
 ## Apply min-max transformation using `min_max` function
+
+Step 1: Apply min-max transformation
 
 ```{r}
 srilanka.minmax <- min_max(srilanka_weekly_data, 
@@ -39,6 +49,7 @@ srilanka.minmax <- min_max(srilanka_weekly_data,
 srilanka.minmax
 ```
 
+Step 2: Heat map on the transformed series
 
 ```{r, fig.width=20, fig.height=15, warning=FALSE}
 ggplot(srilanka.minmax, aes(y=district, x=start.date, fill=minmax.group)) + 
