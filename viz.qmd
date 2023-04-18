@@ -1,5 +1,5 @@
 ---
-title: "Interactive maps"
+title: "Interactive Data Explorer"
 toc: true
 format:
   html:
@@ -15,3 +15,9 @@ format:
 
   gtag('config', 'G-MMF7S9CQZW');
 </script>
+
+
+# Click [here](https://denguedatahub.shinyapps.io/shiny/) to view the app.
+
+
+![](dh.mov)

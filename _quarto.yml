@@ -12,8 +12,8 @@ website:
       - srilanka.qmd
       - singapore.qmd
       - china.qmd
-      - viz.qmd
       - commonfunctions.qmd
+      - viz.qmd
       - icon: github
         href: https://github.com/
       - icon: twitter
