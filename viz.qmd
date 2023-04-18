@@ -19,5 +19,6 @@ format:
 
 # Click [here](https://denguedatahub.shinyapps.io/shiny/) to view the app.
 
+Here is a video demonstration.
 
 ![](dh.mov)

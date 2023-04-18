@@ -1,5 +1,47 @@
 [
   {
+    "objectID": "collaborate.html",
+    "href": "collaborate.html",
+    "title": "Collaborate with us",
+    "section": "",
+    "text": "We invite researchers, public health practitioners, and other interested parties to explore our dataset and collaborate with us to further advance our understanding of dengue fever. Together, we can work towards improving public health outcomes and reducing the burden of this disease on affected communities worldwide.\nThere are few different ways to colloborate with us:"
+  },
+  {
+    "objectID": "collaborate.html#our-pledge",
+    "href": "collaborate.html#our-pledge",
+    "title": "Collaborate with us",
+    "section": "Our Pledge",
+    "text": "Our Pledge\nWe as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.\nWe pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community."
+  },
+  {
+    "objectID": "collaborate.html#our-standards",
+    "href": "collaborate.html#our-standards",
+    "title": "Collaborate with us",
+    "section": "Our Standards",
+    "text": "Our Standards\nExamples of behavior that contributes to a positive environment for our community include:\n\nDemonstrating empathy and kindness toward other people\nBeing respectful of differing opinions, viewpoints, and experiences\nGiving and gracefully accepting constructive feedback\nAccepting responsibility and apologizing to those affected by our mistakes, and learning from the experience\nFocusing on what is best not just for us as individuals, but for the overall community\n\nExamples of unacceptable behavior include:\n\nThe use of sexualized language or imagery, and sexual attention or advances of any kind\nTrolling, insulting or derogatory comments, and personal or political attacks\nPublic or private harassment\nPublishing others’ private information, such as a physical or email address, without their explicit permission\nOther conduct which could reasonably be considered inappropriate in a professional setting"
+  },
+  {
+    "objectID": "collaborate.html#enforcement-responsibilities",
+    "href": "collaborate.html#enforcement-responsibilities",
+    "title": "Collaborate with us",
+    "section": "Enforcement Responsibilities",
+    "text": "Enforcement Responsibilities\nCommunity leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.\nCommunity leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate."
+  },
+  {
+    "objectID": "collaborate.html#scope",
+    "href": "collaborate.html#scope",
+    "title": "Collaborate with us",
+    "section": "Scope",
+    "text": "Scope\nThis Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event."
+  },
+  {
+    "objectID": "collaborate.html#attribution",
+    "href": "collaborate.html#attribution",
+    "title": "Collaborate with us",
+    "section": "Attribution",
+    "text": "Attribution\nThis Code of Conduct is adapted from the [Contributor Covenant][homepage], version 2.1, available at [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html][v2.1]."
+  },
+  {
     "objectID": "posts/post-with-code/index.html",
     "href": "posts/post-with-code/index.html",
     "title": "Post With Code",
@@ -12,6 +54,13 @@
     "title": "Welcome To My Blog",
     "section": "",
     "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "viz.html",
+    "href": "viz.html",
+    "title": "Interactive Data Explorer",
+    "section": "",
+    "text": "Click here to view the app.\nHere is a video demonstration.\nVideo"
   },
   {
     "objectID": "china.html",
@@ -138,54 +187,5 @@
     "title": "myblog",
     "section": "",
     "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nMar 18, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nMar 15, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "viz.html",
-    "href": "viz.html",
-    "title": "Interactive Data Explorer",
-    "section": "",
-    "text": "Click here to view the app.\nVideo"
-  },
-  {
-    "objectID": "collaborate.html",
-    "href": "collaborate.html",
-    "title": "Collaborate with us",
-    "section": "",
-    "text": "We invite researchers, public health practitioners, and other interested parties to explore our dataset and collaborate with us to further advance our understanding of dengue fever. Together, we can work towards improving public health outcomes and reducing the burden of this disease on affected communities worldwide.\nThere are few different ways to colloborate with us:"
-  },
-  {
-    "objectID": "collaborate.html#our-pledge",
-    "href": "collaborate.html#our-pledge",
-    "title": "Collaborate with us",
-    "section": "Our Pledge",
-    "text": "Our Pledge\nWe as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.\nWe pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community."
-  },
-  {
-    "objectID": "collaborate.html#our-standards",
-    "href": "collaborate.html#our-standards",
-    "title": "Collaborate with us",
-    "section": "Our Standards",
-    "text": "Our Standards\nExamples of behavior that contributes to a positive environment for our community include:\n\nDemonstrating empathy and kindness toward other people\nBeing respectful of differing opinions, viewpoints, and experiences\nGiving and gracefully accepting constructive feedback\nAccepting responsibility and apologizing to those affected by our mistakes, and learning from the experience\nFocusing on what is best not just for us as individuals, but for the overall community\n\nExamples of unacceptable behavior include:\n\nThe use of sexualized language or imagery, and sexual attention or advances of any kind\nTrolling, insulting or derogatory comments, and personal or political attacks\nPublic or private harassment\nPublishing others’ private information, such as a physical or email address, without their explicit permission\nOther conduct which could reasonably be considered inappropriate in a professional setting"
-  },
-  {
-    "objectID": "collaborate.html#enforcement-responsibilities",
-    "href": "collaborate.html#enforcement-responsibilities",
-    "title": "Collaborate with us",
-    "section": "Enforcement Responsibilities",
-    "text": "Enforcement Responsibilities\nCommunity leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.\nCommunity leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate."
-  },
-  {
-    "objectID": "collaborate.html#scope",
-    "href": "collaborate.html#scope",
-    "title": "Collaborate with us",
-    "section": "Scope",
-    "text": "Scope\nThis Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event."
-  },
-  {
-    "objectID": "collaborate.html#attribution",
-    "href": "collaborate.html#attribution",
-    "title": "Collaborate with us",
-    "section": "Attribution",
-    "text": "Attribution\nThis Code of Conduct is adapted from the [Contributor Covenant][homepage], version 2.1, available at [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html][v2.1]."
   }
 ]
