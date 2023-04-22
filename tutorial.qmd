@@ -1,0 +1,56 @@
+---
+title: "Tutorials"
+toc: true
+format:
+  html:
+    theme: default
+---
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MMF7S9CQZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MMF7S9CQZW');
+</script>
+
+Spatio-temporal Visualization of Dengue Incidence
+
+```{r, message=FALSE, warning=FALSE}
+library(denguedatahub)
+library(lubridate)
+library(ggplot2)
+library(viridis)
+library(ceylon)
+library(sf)
+library(magrittr)
+library(dplyr)
+
+srilanka_weekly_data$month <- month(srilanka_weekly_data$start.date)
+srilanka_weekly_data$year <- year(srilanka_weekly_data$start.date)
+
+srilanka_weekly_data$district <- toupper(srilanka_weekly_data$district)
+
+district <- district %>% 
+  # use District names from slwer data
+  mutate(district = case_when(
+          DISTRICT ==  "NUWARA ELIYA" ~ "NUWARAELIYA" ,
+          DISTRICT == "HAMBANTOTA" ~ "HAMBANTHOTA",
+          TRUE ~ DISTRICT))
+
+all <-  dplyr::left_join(district, srilanka_weekly_data,
+                   by = "district")
+
+all <- all %>% group_by(year, district) %>%
+  dplyr::summarize(total = sum(cases)) %>% ungroup() 
+all$year <- as.integer(all$year)
+ggplot(all2021) + 
+  geom_sf(aes(fill = total), show.legend = TRUE) + 
+  scale_fill_viridis() +
+  facet_wrap(vars(year), ncol=5) +
+  ggtitle("2021")
+
+
+```
