@@ -21,6 +21,7 @@ format:
 
 ```{r, echo=TRUE, eval=TRUE}
 library(denguedatahub)
+library(tsibble)
 level_of_risk
 
 ```

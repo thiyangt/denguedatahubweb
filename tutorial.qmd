@@ -18,7 +18,7 @@ format:
 
 Spatio-temporal Visualization of Dengue Incidence
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
 library(denguedatahub)
 library(lubridate)
 library(ggplot2)
@@ -27,6 +27,7 @@ library(ceylon)
 library(sf)
 library(magrittr)
 library(dplyr)
+library(tsibble)
 
 srilanka_weekly_data$month <- month(srilanka_weekly_data$start.date)
 srilanka_weekly_data$year <- year(srilanka_weekly_data$start.date)

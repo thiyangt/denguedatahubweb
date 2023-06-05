@@ -255,17 +255,20 @@ ga('send', {
 <p>To access data via the <code>denguedatahub</code> R software package you need to have <a href="https://www.r-project.org/">R programming</a> and <a href="https://posit.co/">Posit</a> software installed in your machine.</p>
 <section id="installation-denguedatahub" class="level2">
 <h2 class="anchored" data-anchor-id="installation-denguedatahub">Installation: <code>denguedatahub</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"denguedatahub"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>You could install the development version from Github using</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"thiyangt/denguedatahub"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"thiyangt/denguedatahub"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="list-of-datasets-inside-denguedatahub" class="level2">
 <h2 class="anchored" data-anchor-id="list-of-datasets-inside-denguedatahub">List of datasets inside <code>denguedatahub</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(denguedatahub)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>vcdExtra<span class="sc">::</span><span class="fu">datasets</span>(<span class="st">"denguedatahub"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(denguedatahub)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>vcdExtra<span class="sc">::</span><span class="fu">datasets</span>(<span class="st">"denguedatahub"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                      Item      class      dim
 1     americas_annual_data data.frame 899134x5
@@ -275,7 +278,7 @@ ga('send', {
 5            level_of_risk data.frame    138x3
 6   philippines_daily_data data.frame  32701x5
 7    singapore_weekly_data data.frame    272x3
-8     srilanka_weekly_data data.frame  21960x6
+8     srilanka_weekly_data data.frame  21934x6
 9             world_annual data.frame   6750x4
                                                                      Title
 1 Dengue and severe dengue cases and deaths for subregions of the Americas

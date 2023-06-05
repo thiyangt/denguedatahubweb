@@ -259,11 +259,21 @@ ga('send', {
 <h1>District-wise weekly Dengue cases from 2006 to 2023-present</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(denguedatahub)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>srilanka_weekly_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'tsibble'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>srilanka_weekly_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 21,960 × 6
+<pre><code># A tibble: 21,934 × 6
     year  week start.date end.date   district    cases
-   &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt;
+ * &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt;
  1  2006    52 2006-12-23 2006-12-29 Colombo        71
  2  2006    52 2006-12-23 2006-12-29 Gampaha        12
  3  2006    52 2006-12-23 2006-12-29 Kalutara       12
@@ -274,13 +284,13 @@ ga('send', {
  8  2006    52 2006-12-23 2006-12-29 Hambanthota     1
  9  2006    52 2006-12-23 2006-12-29 Matara         11
 10  2006    52 2006-12-23 2006-12-29 Jaffna          0
-# ℹ 21,950 more rows</code></pre>
+# ℹ 21,924 more rows</code></pre>
 </div>
 </div>
 <section id="visualize-srilanka_weekly_data" class="level2">
 <h2 class="anchored" data-anchor-id="visualize-srilanka_weekly_data">Visualize <code>srilanka_weekly_data</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>visdat<span class="sc">::</span><span class="fu">vis_dat</span>(srilanka_weekly_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>visdat<span class="sc">::</span><span class="fu">vis_dat</span>(srilanka_weekly_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="srilanka_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -289,16 +299,16 @@ ga('send', {
 <section id="time-series-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="time-series-visualization">Time series visualization</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  Visualizing colombo district cases</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>number_ticks <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {<span class="cf">function</span>(limits) <span class="fu">pretty</span>(limits, n)}</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>srilanka_weekly_data <span class="sc">%&gt;%</span>  </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>start.date, <span class="at">y=</span>cases)) <span class="sc">+</span> <span class="fu">geom_line</span>()  <span class="sc">+</span> </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span> </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(district), <span class="at">scales =</span> <span class="st">"free_y"</span>, <span class="at">ncol=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  Visualizing colombo district cases</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>number_ticks <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {<span class="cf">function</span>(limits) <span class="fu">pretty</span>(limits, n)}</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>srilanka_weekly_data <span class="sc">%&gt;%</span>  </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>start.date, <span class="at">y=</span>cases)) <span class="sc">+</span> <span class="fu">geom_line</span>()  <span class="sc">+</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span> </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(district), <span class="at">scales =</span> <span class="st">"free_y"</span>, <span class="at">ncol=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="srilanka_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="1440"></p>
 </div>
@@ -308,15 +318,15 @@ ga('send', {
 <section id="function-to-extract-dengue-cases-from-weekly-epidemiological-reports-published-by-epidemiology-unit-ministry-of-health-sri-lanka" class="level1">
 <h1>Function to extract dengue cases from weekly epidemiological reports published by <a href="https://www.epid.gov.lk/web/index.php?option=com_content&amp;view=article&amp;id=148&amp;Itemid=449&amp;lang=en">Epidemiology Unit, Ministry of Health Sri Lanka</a></h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ad.list <span class="ot">&lt;-</span> <span class="fu">get_addresses</span>(<span class="st">"http://www.epid.gov.lk/web/index.php?option=com_content&amp;view=article&amp;id=148&amp;Itemid=449&amp;lang=en"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>wer2023url <span class="ot">&lt;-</span> <span class="fu">filter_year_wer</span>(<span class="dv">2023</span>, ad.list[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>])</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data2023 <span class="ot">&lt;-</span> <span class="fu">convert_srilanka_wer_to_tidy</span>(<span class="at">year=</span><span class="dv">2023</span>, <span class="at">url.part2=</span>wer2023url, </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">start.date.first =</span> <span class="st">"2022-12-31"</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">end.date.first =</span> <span class="st">"2023-01-06"</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">start.date.last =</span> <span class="st">"2023-01-28"</span>, </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">end.date.last =</span> <span class="st">"2023-02-03"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">week.no=</span><span class="fu">c</span>(<span class="dv">52</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>))</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>data2023</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ad.list <span class="ot">&lt;-</span> <span class="fu">get_addresses</span>(<span class="st">"http://www.epid.gov.lk/web/index.php?option=com_content&amp;view=article&amp;id=148&amp;Itemid=449&amp;lang=en"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>wer2023url <span class="ot">&lt;-</span> <span class="fu">filter_year_wer</span>(<span class="dv">2023</span>, ad.list[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data2023 <span class="ot">&lt;-</span> <span class="fu">convert_srilanka_wer_to_tidy</span>(<span class="at">year=</span><span class="dv">2023</span>, <span class="at">url.part2=</span>wer2023url, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="at">start.date.first =</span> <span class="st">"2022-12-31"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="at">end.date.first =</span> <span class="st">"2023-01-06"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="at">start.date.last =</span> <span class="st">"2023-01-28"</span>, </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="at">end.date.last =</span> <span class="st">"2023-02-03"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="at">week.no=</span><span class="fu">c</span>(<span class="dv">52</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>data2023</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

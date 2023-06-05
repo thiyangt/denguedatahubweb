@@ -20,6 +20,7 @@ format:
 
 ```{r, echo=TRUE, eval=TRUE}
 library(denguedatahub)
+library(tsibble)
 srilanka_weekly_data
 
 ```

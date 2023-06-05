@@ -16,9 +16,18 @@ format:
   gtag('config', 'G-MMF7S9CQZW');
 </script>
 
+# Data
 
 # Click [here](https://denguedatahub.shinyapps.io/shiny/) to view the app.
 
 Here is a video demonstration.
 
 ![](dh.mov)
+
+# Interactive data visualization: Sri Lanka
+
+# Click [here](https://github.com/thiyangt/denguedatahubweb.git) to view the app.
+
+Here is a video demonstration.
+
+![](c1_and_c2.mov)
