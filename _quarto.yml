@@ -14,6 +14,7 @@ website:
       - china.qmd
       - commonfunctions.qmd
       - viz.qmd
+      - vizinteractive.qmd
       - collaborate.qmd
       - icon: github
         href: https://github.com/thiyangt
