@@ -92,15 +92,3 @@ ggplot( aes(x=mean.latitude, y=incidence, col=mean.longitude)) + geom_point(alph
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
-In 2019: Relationship between longitude, latitude and dengue incidence
-
-```{r}
-library(plotly)
-sum.ll %>% ungroup() %>% filter (year==2019) %>%
-plot_ly(x=~mean.longitude, y=~mean.latitude, z=~incidence, type="scatter3d", mode="markers",
-          , marker = list(
-             size    = 5,
-             opacity = 10))
-
-```
-
