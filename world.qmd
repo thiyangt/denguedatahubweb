@@ -92,3 +92,17 @@ ggplot( aes(x=mean.latitude, y=incidence, col=mean.longitude)) + geom_point(alph
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
+# Relationship with absolute values of longitude and latitude
+
+```{r, warning=FALSE, message=FALSE, fig.height=10, fig.width=10}
+sum.ll %>% filter(0 < incidence & incidence < 100000000) %>%
+ggplot( aes( y=incidence, x=abs(mean.latitude))) + geom_point(alpha=0.5) +
+   theme_bw() + 
+  facet_wrap(~year) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+sum.ll %>% filter(0 < incidence & incidence < 100000000) %>%
+ggplot( aes(x=abs(mean.longitude), y=incidence)) + geom_point(alpha=0.5) +
+   theme_bw() + 
+  facet_wrap(~year) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+

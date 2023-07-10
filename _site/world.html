@@ -224,6 +224,7 @@ ga('send', {
   </ul></li>
   <li><a href="#presence-of-dengue-incidence-in-2019" id="toc-presence-of-dengue-incidence-in-2019" class="nav-link" data-scroll-target="#presence-of-dengue-incidence-in-2019">Presence of dengue incidence in 2019</a></li>
   <li><a href="#relationship-with-longitude-and-latitude" id="toc-relationship-with-longitude-and-latitude" class="nav-link" data-scroll-target="#relationship-with-longitude-and-latitude">Relationship with longitude and latitude</a></li>
+  <li><a href="#relationship-with-absolute-values-of-longitude-and-latitude" id="toc-relationship-with-absolute-values-of-longitude-and-latitude" class="nav-link" data-scroll-target="#relationship-with-absolute-values-of-longitude-and-latitude">Relationship with absolute values of longitude and latitude</a></li>
   </ul>
 </nav>
     </div>
@@ -406,6 +407,25 @@ ga('send', {
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="world_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+</section>
+<section id="relationship-with-absolute-values-of-longitude-and-latitude" class="level1">
+<h1>Relationship with absolute values of longitude and latitude</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sum.ll <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="dv">0</span> <span class="sc">&lt;</span> incidence <span class="sc">&amp;</span> incidence <span class="sc">&lt;</span> <span class="dv">100000000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( <span class="fu">aes</span>( <span class="at">y=</span>incidence, <span class="at">x=</span><span class="fu">abs</span>(mean.latitude))) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="world_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="960"></p>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sum.ll <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="dv">0</span> <span class="sc">&lt;</span> incidence <span class="sc">&amp;</span> incidence <span class="sc">&lt;</span> <span class="dv">100000000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">abs</span>(mean.longitude), <span class="at">y=</span>incidence)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="world_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="960"></p>
 </div>
 </div>
 
