@@ -19,7 +19,7 @@ format:
 # Level of Dengue risk around the world
 
 
-```{r, echo=TRUE, eval=TRUE}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 library(denguedatahub)
 library(tsibble)
 level_of_risk
@@ -70,21 +70,24 @@ ggplot(worlddata2019, aes(x = long,
 
 # Relationship with longitude and latitude
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE,fig.height=10, fig.width=10}
 library(tidyverse)
 sum.ll <-  world_annual %>%
+  filter(dengue.present == "yes") %>%
   group_by(region, year) %>%
   summarize(mean.longitude = mean(long),
           mean.latitude = mean(lat),
           incidence = sum(incidence))  
 
 sum.ll %>% filter(0 < incidence & incidence < 100000000) %>%
-ggplot( aes(y=mean.longitude, x=incidence)) + geom_point(alpha=0.5) +
-  scale_fill_continuous(type = "viridis") +
-  theme_bw()+ facet_wrap(~year) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+ggplot( aes(x=mean.longitude, y=incidence, col=mean.latitude)) + geom_point(alpha=0.5) +
+  scale_color_viridis_c() + theme_bw() + 
+  facet_wrap(~year) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 sum.ll %>% filter(0 < incidence & incidence < 100000000) %>%
-ggplot( aes(x=mean.latitude, y=incidence)) + geom_point(alpha=0.5) +
-  scale_fill_continuous(type = "viridis") +
-  theme_bw()+ facet_wrap(~year) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+ggplot( aes(x=mean.latitude, y=incidence, col=mean.longitude)) + geom_point(alpha=0.5) +
+  scale_color_viridis_c() +
+  theme_bw()+ 
+  facet_wrap(~year) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
