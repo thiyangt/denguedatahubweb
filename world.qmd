@@ -44,19 +44,9 @@ ggplot(tab1, aes(region, count)) +
   geom_bar(aes(fill = level_of_risk), stat = "identity", position = "dodge") + theme(legend.position = "bottom") + xlab("Region") + ylab("Number of countries") + scale_fill_brewer(palette = "Dark2")
 ```
 
-# Annual number of dengue fever infections around the world from 1990 to 2019 in 225 countries
+# Presence of dengue incidence in 2019
 
-```{r}
-world_annual
-```
 
-## visualise  `world_annual` dataset
-
-```{r}
-vis_dat(world_annual) 
-```
-
-## Spatial visualization
 
 ```{r, warning=FALSE, message=FALSE}
 library(denguedatahub)
@@ -65,13 +55,7 @@ library(maps)
 library(magrittr)
 library(viridis)
 
-worldMap <- map_data("world")
-worlddata <- dplyr::left_join(worldMap, world_annual, by = c(region = "entity"))
-
-worlddata <- worlddata %>%
-  dplyr::mutate(dengue.present = dplyr::case_when(incidence == 0 ~ "no", incidence!=0 ~ "yes", incidence == NA ~ "NA"))
-
-worlddata2019 <- dplyr::filter(worlddata, year==2019)
+worlddata2019 <- dplyr::filter(world_annual, year==2019)
 ggplot(worlddata2019, aes(x = long,
            y = lat,
            group=group,
@@ -79,6 +63,24 @@ ggplot(worlddata2019, aes(x = long,
   geom_polygon(color = "black") +
   labs(x = "Longitude",
        y = "Latitude") +
-  theme(legend.position = "bottom") + scale_fill_brewer(palette = "Dark2")
+  theme(legend.position = "bottom") + scale_fill_brewer(palette = "Dark2") 
+  
 
+```
+
+# Relationship with longitude and latitude
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+sum.ll <-  world_annual %>%
+  group_by(region, year) %>%
+  summarize(mean.longitude = mean(long),
+          mean.latitude = mean(lat),
+          incidence = sum(incidence))  
+
+sum.ll %>% filter(0 < incidence & incidence < 100000000) %>%
+ggplot( aes(y=mean.longitude, x=incidence)) + geom_point() + facet_wrap(~year) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+sum.ll %>% filter(0 < incidence & incidence < 100000000) %>%
+ggplot( aes(y=mean.latitude, x=incidence)) + geom_point() + facet_wrap(~year) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```

@@ -222,11 +222,8 @@ ga('send', {
   <li><a href="#visualize-level_of_risk-dataset" id="toc-visualize-level_of_risk-dataset" class="nav-link" data-scroll-target="#visualize-level_of_risk-dataset">Visualize <code>level_of_risk</code> dataset</a></li>
   <li><a href="#summarize-and-visualize-level_of_riskdata" id="toc-summarize-and-visualize-level_of_riskdata" class="nav-link" data-scroll-target="#summarize-and-visualize-level_of_riskdata">Summarize and Visualize <code>level_of_risk</code>data</a></li>
   </ul></li>
-  <li><a href="#annual-number-of-dengue-fever-infections-around-the-world-from-1990-to-2019-in-225-countries" id="toc-annual-number-of-dengue-fever-infections-around-the-world-from-1990-to-2019-in-225-countries" class="nav-link" data-scroll-target="#annual-number-of-dengue-fever-infections-around-the-world-from-1990-to-2019-in-225-countries">Annual number of dengue fever infections around the world from 1990 to 2019 in 225 countries</a>
-  <ul class="collapse">
-  <li><a href="#visualise-world_annual-dataset" id="toc-visualise-world_annual-dataset" class="nav-link" data-scroll-target="#visualise-world_annual-dataset">visualise <code>world_annual</code> dataset</a></li>
-  <li><a href="#spatial-visualization" id="toc-spatial-visualization" class="nav-link" data-scroll-target="#spatial-visualization">Spatial visualization</a></li>
-  </ul></li>
+  <li><a href="#presence-of-dengue-incidence-in-2019" id="toc-presence-of-dengue-incidence-in-2019" class="nav-link" data-scroll-target="#presence-of-dengue-incidence-in-2019">Presence of dengue incidence in 2019</a></li>
+  <li><a href="#relationship-with-longitude-and-latitude" id="toc-relationship-with-longitude-and-latitude" class="nav-link" data-scroll-target="#relationship-with-longitude-and-latitude">Relationship with longitude and latitude</a></li>
   </ul>
 </nav>
     </div>
@@ -369,67 +366,52 @@ Attaching package: 'tsibble'</code></pre>
 </div>
 </section>
 </section>
-<section id="annual-number-of-dengue-fever-infections-around-the-world-from-1990-to-2019-in-225-countries" class="level1">
-<h1>Annual number of dengue fever infections around the world from 1990 to 2019 in 225 countries</h1>
+<section id="presence-of-dengue-incidence-in-2019" class="level1">
+<h1>Presence of dengue incidence in 2019</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>world_annual</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6,750 × 4
-   entity      code   year incidence
-   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;     &lt;dbl&gt;
- 1 Afghanistan AFG    1990     23371
- 2 Afghanistan AFG    1991     25794
- 3 Afghanistan AFG    1992     29766
- 4 Afghanistan AFG    1993     32711
- 5 Afghanistan AFG    1994     34268
- 6 Afghanistan AFG    1995     35823
- 7 Afghanistan AFG    1996     37397
- 8 Afghanistan AFG    1997     38862
- 9 Afghanistan AFG    1998     39660
-10 Afghanistan AFG    1999     39987
-# ℹ 6,740 more rows</code></pre>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(denguedatahub)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>worlddata2019 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(world_annual, year<span class="sc">==</span><span class="dv">2019</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(worlddata2019, <span class="fu">aes</span>(<span class="at">x =</span> long,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> lat,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">group=</span>group,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> dengue.present)) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Longitude"</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Latitude"</span>) <span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span> <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="world_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<section id="visualise-world_annual-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="visualise-world_annual-dataset">visualise <code>world_annual</code> dataset</h2>
+</section>
+<section id="relationship-with-longitude-and-latitude" class="level1">
+<h1>Relationship with longitude and latitude</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_dat</span>(world_annual) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sum.ll <span class="ot">&lt;-</span>  world_annual <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region, year) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean.longitude =</span> <span class="fu">mean</span>(long),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">mean.latitude =</span> <span class="fu">mean</span>(lat),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">incidence =</span> <span class="fu">sum</span>(incidence))  </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>sum.ll <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="dv">0</span> <span class="sc">&lt;</span> incidence <span class="sc">&amp;</span> incidence <span class="sc">&lt;</span> <span class="dv">100000000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">y=</span>mean.longitude, <span class="at">x=</span>incidence)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>year) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="world_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
-</div>
-</section>
-<section id="spatial-visualization" class="level2">
-<h2 class="anchored" data-anchor-id="spatial-visualization">Spatial visualization</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(denguedatahub)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>worldMap <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>worlddata <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">left_join</span>(worldMap, world_annual, <span class="at">by =</span> <span class="fu">c</span>(<span class="at">region =</span> <span class="st">"entity"</span>))</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>worlddata <span class="ot">&lt;-</span> worlddata <span class="sc">%&gt;%</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">dengue.present =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(incidence <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"no"</span>, incidence<span class="sc">!=</span><span class="dv">0</span> <span class="sc">~</span> <span class="st">"yes"</span>, incidence <span class="sc">==</span> <span class="cn">NA</span> <span class="sc">~</span> <span class="st">"NA"</span>))</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>worlddata2019 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(worlddata, year<span class="sc">==</span><span class="dv">2019</span>)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(worlddata2019, <span class="fu">aes</span>(<span class="at">x =</span> long,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> lat,</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">group=</span>group,</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> dengue.present)) <span class="sc">+</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Longitude"</span>,</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Latitude"</span>) <span class="sc">+</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span> <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sum.ll <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="dv">0</span> <span class="sc">&lt;</span> incidence <span class="sc">&amp;</span> incidence <span class="sc">&lt;</span> <span class="dv">100000000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">y=</span>mean.latitude, <span class="at">x=</span>incidence)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>year) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="world_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="world_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
