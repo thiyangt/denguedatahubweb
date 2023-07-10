@@ -106,3 +106,18 @@ ggplot( aes(x=abs(mean.longitude), y=incidence)) + geom_point(alpha=0.5) +
   facet_wrap(~year) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
+# Dynamic visualization
+
+```{r, warning=FALSE, message=FALSE}
+library(gganimate)
+sum.ll$year <- as.integer(sum.ll$year)
+sum.ll %>% filter(0 < incidence & incidence < 100000000) %>%
+ggplot( aes( y=incidence, x=abs(mean.latitude), col=mean.longitude)) + geom_point(alpha=0.5) +
+   theme_bw() + 
+   scale_color_viridis_c() +
+ theme(
+   axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+   transition_time(year) +
+  labs(title = "Year: {frame_time}")
+```
+

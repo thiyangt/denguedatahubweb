@@ -225,6 +225,7 @@ ga('send', {
   <li><a href="#presence-of-dengue-incidence-in-2019" id="toc-presence-of-dengue-incidence-in-2019" class="nav-link" data-scroll-target="#presence-of-dengue-incidence-in-2019">Presence of dengue incidence in 2019</a></li>
   <li><a href="#relationship-with-longitude-and-latitude" id="toc-relationship-with-longitude-and-latitude" class="nav-link" data-scroll-target="#relationship-with-longitude-and-latitude">Relationship with longitude and latitude</a></li>
   <li><a href="#relationship-with-absolute-values-of-longitude-and-latitude" id="toc-relationship-with-absolute-values-of-longitude-and-latitude" class="nav-link" data-scroll-target="#relationship-with-absolute-values-of-longitude-and-latitude">Relationship with absolute values of longitude and latitude</a></li>
+  <li><a href="#dynamic-visualization" id="toc-dynamic-visualization" class="nav-link" data-scroll-target="#dynamic-visualization">Dynamic visualization</a></li>
   </ul>
 </nav>
     </div>
@@ -426,6 +427,24 @@ ga('send', {
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="world_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+</section>
+<section id="dynamic-visualization" class="level1">
+<h1>Dynamic visualization</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sum.ll<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(sum.ll<span class="sc">$</span>year)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>sum.ll <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="dv">0</span> <span class="sc">&lt;</span> incidence <span class="sc">&amp;</span> incidence <span class="sc">&lt;</span> <span class="dv">100000000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( <span class="fu">aes</span>( <span class="at">y=</span>incidence, <span class="at">x=</span><span class="fu">abs</span>(mean.latitude), <span class="at">col=</span>mean.longitude)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_color_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">transition_time</span>(year) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Year: {frame_time}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="world_files/figure-html/unnamed-chunk-7-1.gif" class="img-fluid"></p>
 </div>
 </div>
 
