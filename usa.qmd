@@ -1,0 +1,81 @@
+---
+title: "USA"
+toc: true
+format:
+  html:
+    theme: default
+---
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MMF7S9CQZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MMF7S9CQZW');
+</script>
+
+
+
+```{r, warning=FALSE, message=FALSE}
+library(denguedatahub)
+library(tsibble)
+```
+
+## Dengue and severe dengue cases and deaths for subregions of the Americas
+
+```{r}
+head(americas_annual_data)
+```
+
+## All dengue cases by week in US states and territories, 2010 - 2023
+
+```{r}
+head(cdc_casesby_week)
+```
+
+## Dengue cases by age group and sex in US states and territories, 2010 - 2023
+
+
+```{r}
+head(cdc_dengue_agesex)
+```
+
+## All dengue cases by jurisdiction of residence in US states and territories, 2010 - 2023
+
+
+```{r}
+head(cdc_dengue_casesbyjurisdiction)
+```
+
+## All dengue cases by county of residence in US states and territories, 2010 - 2023
+
+
+```{r}
+head(cdc_dengue_countyyear)
+```
+
+## Locally acquired dengue cases by year, 2010 - 2023
+
+
+```{r}
+head(cdc_local_dengue_cases)
+```
+
+## Travel associated dengue cases by year, 2010 - 2023
+
+
+```{r}
+head(cdc_travel_associated_dengue_cases)
+```
+
+
+##  Annual number of dengue fever infections in the USA
+
+
+```{r}
+head(cdc_usa_dengue_infection)
+```
+
+Data Source: [Centers for Disease Control and Prevention](https://www.cdc.gov/index.html)

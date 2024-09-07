@@ -48,35 +48,4 @@ ggplot(aes(x=start.date, y=cases)) + geom_line()  +
 
 ```
 
-# Function to extract dengue cases from weekly epidemiological reports published by [Epidemiology Unit, Ministry of Health Sri Lanka](https://www.epid.gov.lk/web/index.php?option=com_content&view=article&id=148&Itemid=449&lang=en)
 
-## Step 1: Get PDF links corresponds to 2024
-
-```{r}
-library(denguedatahub)
-link2024 <- get_pdflinks_srilanka(url="https://www.epid.gov.lk/weekly-epidemiological-report/weekly-epidemiological-report", volume.number="Vol_51")
-head(link2024)
-```
-
-## Step 2: Convert PDF file data into tibble format
-
-This example illustrates the content of the first 2 pages of the PDF.
-
-```{r}
-link2024[[1]][1] ## No 1 WER
-link2024[[2]][1] ## No 30 WER
-data2024 <- convert_slwer_to_tidy(year=2024, 
-                                         reports.url=link2024[1:2], 
-                                         start.date.first = "2023-12-23",
-                                         end.date.first = "2023-12-29",
-                                         start.date.last = "2023-12-30", 
-                                         end.date.last = "2024-1-05",
-                                         week.no=c(52, 1))
-head(data2024)
-```
-
-## Function to download Weekly Epidemiological Reports (WEK) and save them inside the local directory
-
-```r
-download_pdfwer_srilanka(url="https://www.epid.gov.lk/weekly-epidemiological-report/weekly-epidemiological-report", folder.name="dengue", volume.number="Vol_51")
-```

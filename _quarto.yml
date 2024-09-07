@@ -10,9 +10,11 @@ website:
       - Data.qmd
       - world.qmd
       - srilanka.qmd
+      - usa.qmd
       - singapore.qmd
       - china.qmd
       - other.qmd
+      - Webscraping.qmd
       - commonfunctions.qmd
       - viz.qmd
       - collaborate.qmd

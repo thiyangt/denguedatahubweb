@@ -34,7 +34,13 @@ about:
 
 # <span class="centered-heading">Welcome to the <span class="red-text">Dengue Data Hub</span>, a centralized repository for dengue-related data from around the world!</span>
 
+
+::: {.callout-note style="padding: 30px; font-size: 80px; border-width: 2px;"}
+
 # We have data for 225 countries around the world!
+
+:::
+
 
 # Author: [Dr Thiyanga S. Talagala](https://thiyanga.netlify.app/)
 

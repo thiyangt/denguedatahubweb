@@ -2,16 +2,23 @@
   {
     "objectID": "world.html",
     "href": "world.html",
-    "title": "World",
+    "title": "All Countries",
     "section": "",
     "text": "library(denguedatahub)\nlibrary(tsibble)\nlevel_of_risk\n\n# A tibble: 293 × 4\n   country                  level_of_risk       region last_accessed\n   &lt;chr&gt;                    &lt;chr&gt;               &lt;chr&gt;  &lt;date&gt;       \n 1 Angola                   Sporadic/Uncertain  Africa 2023-01-16   \n 2 Benin                    Sporadic/Uncertain  Africa 2023-01-16   \n 3 Burkina Faso             Frequent/Continuous Africa 2023-01-16   \n 4 Burundi                  Sporadic/Uncertain  Africa 2023-01-16   \n 5 Cameroon                 Sporadic/Uncertain  Africa 2023-01-16   \n 6 Cape Verde               Sporadic/Uncertain  Africa 2023-01-16   \n 7 Central African Republic Sporadic/Uncertain  Africa 2023-01-16   \n 8 Chad                     Sporadic/Uncertain  Africa 2023-01-16   \n 9 Comoros                  Sporadic/Uncertain  Africa 2023-01-16   \n10 Congo                    Sporadic/Uncertain  Africa 2023-01-16   \n# ℹ 283 more rows\n\n\n\n\n\nlibrary(tidyverse)\ntab1 &lt;- level_of_risk |&gt; \n  filter(last_accessed == \"2024-09-03\") |&gt;\n  group_by(region, level_of_risk) |&gt;\n  summarise(count = n(), .groups = 'drop')\n\nggplot(tab1, aes(region, count, fill = level_of_risk)) + \n  geom_bar(stat = \"identity\", position = position_dodge(preserve = \"single\")) + \n  theme(legend.position = \"bottom\") + \n  xlab(\"Region\") + \n  ylab(\"Number of countries\") + \n  scale_fill_brewer(palette = \"Dark2\") +\n  scale_x_discrete(drop = TRUE)"
   },
   {
     "objectID": "world.html#summarize-and-visualize-level_of_riskdata",
     "href": "world.html#summarize-and-visualize-level_of_riskdata",
-    "title": "World",
+    "title": "All Countries",
     "section": "",
     "text": "library(tidyverse)\ntab1 &lt;- level_of_risk |&gt; \n  filter(last_accessed == \"2024-09-03\") |&gt;\n  group_by(region, level_of_risk) |&gt;\n  summarise(count = n(), .groups = 'drop')\n\nggplot(tab1, aes(region, count, fill = level_of_risk)) + \n  geom_bar(stat = \"identity\", position = position_dodge(preserve = \"single\")) + \n  theme(legend.position = \"bottom\") + \n  xlab(\"Region\") + \n  ylab(\"Number of countries\") + \n  scale_fill_brewer(palette = \"Dark2\") +\n  scale_x_discrete(drop = TRUE)"
+  },
+  {
+    "objectID": "viz.html",
+    "href": "viz.html",
+    "title": "Interactive Data Explorer",
+    "section": "",
+    "text": "Data\n\n\nClick here to view the app.\nHere is a video demonstration.\nVideo\n\n\nInteractive data visualization: Sri Lanka\n\n\nClick here to view the app.\nHere is a video demonstration.\nVideo"
   },
   {
     "objectID": "tutorial.html",
@@ -163,23 +170,23 @@
   {
     "objectID": "commonfunctions.html",
     "href": "commonfunctions.html",
-    "title": "Common functions",
+    "title": "Data Manipulation Functions",
     "section": "",
-    "text": "Visualizing multiple time series can be a challenging task due to issues like overlapping and scale differences. One popular approach to visualize all time series in a single plot is by using a heat map. In this context, we have written a code to visualize the dengue data for all districts in Sri Lanka, covering the period from 2008 to the present. This visualization can be useful in identifying the dominating districts in terms of dengue outbreaks.\n\nlibrary(tidyverse)\nlibrary(denguedatahub)\nlibrary(viridis)\nlibrary(lubridate)\nggplot(srilanka_weekly_data, aes(y=district, x=start.date, fill=cases)) + \n  geom_tile() + \n  scale_x_date(date_breaks = \"1 year\", date_labels = \"%Y\") +  geom_raster() +scale_fill_viridis_c() + ylab(\"District\") + \n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) \n\n\n\n\n\n\n\n\nHowever, relying solely on the above heat map can sometimes make it difficult to identify whether all districts have a similar pattern or not. For instance, it may not be immediately clear whether the peak periods of all districts are similar or not. To overcome this challenge, we can apply a min-max transformation to each series based on its minimum and maximum values. This can help us to compare the patterns across different districts more easily, and gain insights into the temporal dynamics of dengue outbreaks in Sri Lanka.\nThe min_max function with the parameter local=TRUE helps you easily normalize the series using the min-max transformation with respect to each series minimum and maximum value.\n\n\nStep 1: Apply min-max transformation\n\nsrilanka.minmax &lt;- min_max(srilanka_weekly_data, \n      variable.to.minmax=\"cases\" , local = TRUE, group.var=\"district\")\nsrilanka.minmax\n\n# A tibble: 23,815 × 9\n# Groups:   district [26]\n    year  week start.date end.date   district    cases min.group max.group\n   &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n 1  2006    52 2006-12-23 2006-12-29 Colombo        71         0      1972\n 2  2006    52 2006-12-23 2006-12-29 Gampaha        12         0      2631\n 3  2006    52 2006-12-23 2006-12-29 Kalutara       12         0       703\n 4  2006    52 2006-12-23 2006-12-29 Kandy          20         0      1062\n 5  2006    52 2006-12-23 2006-12-29 Matale          4         0       260\n 6  2006    52 2006-12-23 2006-12-29 NuwaraEliya     1         0        85\n 7  2006    52 2006-12-23 2006-12-29 Galle           1         0       332\n 8  2006    52 2006-12-23 2006-12-29 Hambanthota     1         0       147\n 9  2006    52 2006-12-23 2006-12-29 Matara         11         0       489\n10  2006    52 2006-12-23 2006-12-29 Jaffna          0         0       931\n# ℹ 23,805 more rows\n# ℹ 1 more variable: minmax.group &lt;dbl&gt;\n\n\nStep 2: Heat map on the transformed series\n\nggplot(srilanka.minmax, aes(y=district, x=start.date, fill=minmax.group)) + \n  geom_tile() + \n  scale_x_date(date_breaks = \"1 year\", date_labels = \"%Y\") + geom_raster() +scale_fill_viridis_c() + ylab(\"Year\") + \n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
+    "text": "Visualizing multiple time series can be a challenging task due to issues like overlapping and scale differences. One popular approach to visualize all time series in a single plot. This visualization can be useful in identifying the dominating districts in terms of dengue outbreaks.\n\nlibrary(tidyverse)\nlibrary(denguedatahub)\nlibrary(viridis)\nlibrary(lubridate)\nlibrary(patchwork)\np1 &lt;- ggplot(srilanka_weekly_data, aes(color=cases, x=start.date, y=cases, group=district)) + \n  geom_line() + \n  scale_color_viridis(option='turbo') +\n  scale_x_date(date_breaks = \"1 year\", date_labels = \"%Y\") +  ylab(\"Dengue Counts\") + \n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) \n\np2 &lt;- ggplot(srilanka_weekly_data, aes(color=district, x=start.date, y=cases, group=district)) + \n  geom_line() + \n  scale_x_date(date_breaks = \"1 year\", date_labels = \"%Y\") +  ylab(\"Dengue Counts\") + \n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) \np1/p2\n\n\n\n\n\n\n\n\nHowever, relying solely on the above plots can sometimes make it difficult to identify whether all districts have a similar pattern or not. For instance, it may not be immediately clear whether the peak periods of all districts are similar or not. To overcome this challenge, we can apply a min-max transformation to each series based on its minimum and maximum values. This can help us to compare the patterns across different districts more easily, and gain insights into the temporal dynamics of dengue outbreaks in Sri Lanka.\nThe min_max function with the parameter local=TRUE helps you easily normalize the series using the min-max transformation with respect to each series minimum and maximum value.\n\n\nStep 1: Apply min-max transformation\n\nsrilanka.minmax &lt;- min_max(srilanka_weekly_data, \n      variable.to.minmax=\"cases\" , local = TRUE, group.var=\"district\")\nsrilanka.minmax\n\n# A tibble: 23,815 × 9\n# Groups:   district [26]\n    year  week start.date end.date   district    cases min.group max.group\n   &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n 1  2006    52 2006-12-23 2006-12-29 Colombo        71         0      1972\n 2  2006    52 2006-12-23 2006-12-29 Gampaha        12         0      2631\n 3  2006    52 2006-12-23 2006-12-29 Kalutara       12         0       703\n 4  2006    52 2006-12-23 2006-12-29 Kandy          20         0      1062\n 5  2006    52 2006-12-23 2006-12-29 Matale          4         0       260\n 6  2006    52 2006-12-23 2006-12-29 NuwaraEliya     1         0        85\n 7  2006    52 2006-12-23 2006-12-29 Galle           1         0       332\n 8  2006    52 2006-12-23 2006-12-29 Hambanthota     1         0       147\n 9  2006    52 2006-12-23 2006-12-29 Matara         11         0       489\n10  2006    52 2006-12-23 2006-12-29 Jaffna          0         0       931\n# ℹ 23,805 more rows\n# ℹ 1 more variable: minmax.group &lt;dbl&gt;\n\n\nStep 2: Transformed series\n\np3 &lt;- ggplot(srilanka.minmax, aes(colour=minmax.group, x=start.date, y=minmax.group, group=district)) + \n  geom_line() + \n  scale_x_date(date_breaks = \"1 year\", date_labels = \"%Y\") +\n  scale_color_viridis(option='turbo') + ylab(\"Year\") + \n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))\n\np4 &lt;- ggplot(srilanka.minmax, aes(colour=district, x=start.date, y=minmax.group, group=district)) + \n  geom_line() + \n  scale_x_date(date_breaks = \"1 year\", date_labels = \"%Y\") +\n   ylab(\"Year\") + \n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))\np3/p4"
   },
   {
     "objectID": "commonfunctions.html#apply-min-max-transformation-using-min_max-function",
     "href": "commonfunctions.html#apply-min-max-transformation-using-min_max-function",
-    "title": "Common functions",
+    "title": "Data Manipulation Functions",
     "section": "",
-    "text": "Step 1: Apply min-max transformation\n\nsrilanka.minmax &lt;- min_max(srilanka_weekly_data, \n      variable.to.minmax=\"cases\" , local = TRUE, group.var=\"district\")\nsrilanka.minmax\n\n# A tibble: 23,815 × 9\n# Groups:   district [26]\n    year  week start.date end.date   district    cases min.group max.group\n   &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n 1  2006    52 2006-12-23 2006-12-29 Colombo        71         0      1972\n 2  2006    52 2006-12-23 2006-12-29 Gampaha        12         0      2631\n 3  2006    52 2006-12-23 2006-12-29 Kalutara       12         0       703\n 4  2006    52 2006-12-23 2006-12-29 Kandy          20         0      1062\n 5  2006    52 2006-12-23 2006-12-29 Matale          4         0       260\n 6  2006    52 2006-12-23 2006-12-29 NuwaraEliya     1         0        85\n 7  2006    52 2006-12-23 2006-12-29 Galle           1         0       332\n 8  2006    52 2006-12-23 2006-12-29 Hambanthota     1         0       147\n 9  2006    52 2006-12-23 2006-12-29 Matara         11         0       489\n10  2006    52 2006-12-23 2006-12-29 Jaffna          0         0       931\n# ℹ 23,805 more rows\n# ℹ 1 more variable: minmax.group &lt;dbl&gt;\n\n\nStep 2: Heat map on the transformed series\n\nggplot(srilanka.minmax, aes(y=district, x=start.date, fill=minmax.group)) + \n  geom_tile() + \n  scale_x_date(date_breaks = \"1 year\", date_labels = \"%Y\") + geom_raster() +scale_fill_viridis_c() + ylab(\"Year\") + \n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
+    "text": "Step 1: Apply min-max transformation\n\nsrilanka.minmax &lt;- min_max(srilanka_weekly_data, \n      variable.to.minmax=\"cases\" , local = TRUE, group.var=\"district\")\nsrilanka.minmax\n\n# A tibble: 23,815 × 9\n# Groups:   district [26]\n    year  week start.date end.date   district    cases min.group max.group\n   &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n 1  2006    52 2006-12-23 2006-12-29 Colombo        71         0      1972\n 2  2006    52 2006-12-23 2006-12-29 Gampaha        12         0      2631\n 3  2006    52 2006-12-23 2006-12-29 Kalutara       12         0       703\n 4  2006    52 2006-12-23 2006-12-29 Kandy          20         0      1062\n 5  2006    52 2006-12-23 2006-12-29 Matale          4         0       260\n 6  2006    52 2006-12-23 2006-12-29 NuwaraEliya     1         0        85\n 7  2006    52 2006-12-23 2006-12-29 Galle           1         0       332\n 8  2006    52 2006-12-23 2006-12-29 Hambanthota     1         0       147\n 9  2006    52 2006-12-23 2006-12-29 Matara         11         0       489\n10  2006    52 2006-12-23 2006-12-29 Jaffna          0         0       931\n# ℹ 23,805 more rows\n# ℹ 1 more variable: minmax.group &lt;dbl&gt;\n\n\nStep 2: Transformed series\n\np3 &lt;- ggplot(srilanka.minmax, aes(colour=minmax.group, x=start.date, y=minmax.group, group=district)) + \n  geom_line() + \n  scale_x_date(date_breaks = \"1 year\", date_labels = \"%Y\") +\n  scale_color_viridis(option='turbo') + ylab(\"Year\") + \n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))\n\np4 &lt;- ggplot(srilanka.minmax, aes(colour=district, x=start.date, y=minmax.group, group=district)) + \n  geom_line() + \n  scale_x_date(date_breaks = \"1 year\", date_labels = \"%Y\") +\n   ylab(\"Year\") + \n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))\np3/p4"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Welcome to the Dengue Data Hub, a centralized repository for dengue-related data from around the world!",
     "section": "",
-    "text": "Welcome to the Dengue Data Hub, a centralized repository for dengue-related data from around the world!\n\n\nWe have data for 225 countries around the world!\n\n\nAuthor: Dr Thiyanga S. Talagala\n\n\nFunded by\n\nR consortium, , USA\n\n\nContact: ttalagala@sjp.ac.lk"
+    "text": "Welcome to the Dengue Data Hub, a centralized repository for dengue-related data from around the world!\n\n\n\n\n\n\nWe have data for 225 countries around the world!\n\n\n\n\n\n\n\nAuthor: Dr Thiyanga S. Talagala\n\n\nFunded by\n\nR consortium, , USA\n\n\nContact: ttalagala@sjp.ac.lk"
   },
   {
     "objectID": "other.html",
@@ -238,31 +245,94 @@
     "text": "library(plotly)\nlibrary(viridis)\n\n#  Visualizing colombo district cases\nnumber_ticks &lt;- function(n) {function(limits) pretty(limits, n)}\nsrilanka_weekly_data %&gt;%  \nggplot(aes(x=start.date, y=cases)) + geom_line()  + \n  scale_x_date(date_breaks = \"1 year\", date_labels = \"%Y\") + \n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +\n  facet_wrap(vars(district), scales = \"free_y\", ncol=5)"
   },
   {
-    "objectID": "srilanka.html#step-1-get-pdf-links-corresponds-to-2024",
-    "href": "srilanka.html#step-1-get-pdf-links-corresponds-to-2024",
-    "title": "Sri Lanka",
-    "section": "Step 1: Get PDF links corresponds to 2024",
-    "text": "Step 1: Get PDF links corresponds to 2024\n\nlibrary(denguedatahub)\nlink2024 &lt;- get_pdflinks_srilanka(url=\"https://www.epid.gov.lk/weekly-epidemiological-report/weekly-epidemiological-report\", volume.number=\"Vol_51\")\nhead(link2024)\n\n[1] \"https://www.epid.gov.lk/storage/post/pdfs/en_65b8d3689b762_Vol_51_no_01-english.pdf\"\n[2] \"https://www.epid.gov.lk/storage/post/pdfs/en_65fc755050a91_Vol_51_no_02-english.pdf\"\n[3] \"https://www.epid.gov.lk/storage/post/pdfs/en_65fc71dbe22ce_Vol_51_no_03-english.pdf\"\n[4] \"https://www.epid.gov.lk/storage/post/pdfs/en_65fc6756ec7d6_Vol_51_no_04-english.pdf\"\n[5] \"https://www.epid.gov.lk/storage/post/pdfs/en_65fc628912f33_Vol_51_no_05-english.pdf\"\n[6] \"https://www.epid.gov.lk/storage/post/pdfs/en_65fc60581a048_Vol_51_no_06-english.pdf\""
-  },
-  {
-    "objectID": "srilanka.html#step-2-convert-pdf-file-data-into-tibble-format",
-    "href": "srilanka.html#step-2-convert-pdf-file-data-into-tibble-format",
-    "title": "Sri Lanka",
-    "section": "Step 2: Convert PDF file data into tibble format",
-    "text": "Step 2: Convert PDF file data into tibble format\nThis example illustrates the content of the first 2 pages of the PDF.\n\nlink2024[[1]][1] ## No 1 WER\n\n[1] \"https://www.epid.gov.lk/storage/post/pdfs/en_65b8d3689b762_Vol_51_no_01-english.pdf\"\n\nlink2024[[2]][1] ## No 30 WER\n\n[1] \"https://www.epid.gov.lk/storage/post/pdfs/en_65fc755050a91_Vol_51_no_02-english.pdf\"\n\ndata2024 &lt;- convert_slwer_to_tidy(year=2024, \n                                         reports.url=link2024[1:2], \n                                         start.date.first = \"2023-12-23\",\n                                         end.date.first = \"2023-12-29\",\n                                         start.date.last = \"2023-12-30\", \n                                         end.date.last = \"2024-1-05\",\n                                         week.no=c(52, 1))\n\nNew names:\nNew names:\n• `` -&gt; `...2`\n• `` -&gt; `...7`\n• `` -&gt; `...10`\n• `` -&gt; `...12`\n\nhead(data2024)\n\n# A tibble: 6 × 6\n   year  week start.date end.date   district    cases\n  &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;       &lt;chr&gt;\n1  2024    52 2023-12-23 2023-12-29 Colombo     375  \n2  2024    52 2023-12-23 2023-12-29 Gampaha     146  \n3  2024    52 2023-12-23 2023-12-29 Kalutara    89   \n4  2024    52 2023-12-23 2023-12-29 Kandy       330  \n5  2024    52 2023-12-23 2023-12-29 Matale      71   \n6  2024    52 2023-12-23 2023-12-29 NuwaraEliya 13"
-  },
-  {
-    "objectID": "srilanka.html#function-to-download-weekly-epidemiological-reports-wek-and-save-them-inside-the-local-directory",
-    "href": "srilanka.html#function-to-download-weekly-epidemiological-reports-wek-and-save-them-inside-the-local-directory",
-    "title": "Sri Lanka",
-    "section": "Function to download Weekly Epidemiological Reports (WEK) and save them inside the local directory",
-    "text": "Function to download Weekly Epidemiological Reports (WEK) and save them inside the local directory\ndownload_pdfwer_srilanka(url=\"https://www.epid.gov.lk/weekly-epidemiological-report/weekly-epidemiological-report\", folder.name=\"dengue\", volume.number=\"Vol_51\")"
-  },
-  {
-    "objectID": "viz.html",
-    "href": "viz.html",
-    "title": "Interactive Data Explorer",
+    "objectID": "usa.html",
+    "href": "usa.html",
+    "title": "USA",
     "section": "",
-    "text": "Data\n\n\nClick here to view the app.\nHere is a video demonstration.\nVideo\n\n\nInteractive data visualization: Sri Lanka\n\n\nClick here to view the app.\nHere is a video demonstration.\nVideo"
+    "text": "library(denguedatahub)\nlibrary(tsibble)"
+  },
+  {
+    "objectID": "usa.html#dengue-and-severe-dengue-cases-and-deaths-for-subregions-of-the-americas",
+    "href": "usa.html#dengue-and-severe-dengue-cases-and-deaths-for-subregions-of-the-americas",
+    "title": "USA",
+    "section": "Dengue and severe dengue cases and deaths for subregions of the Americas",
+    "text": "Dengue and severe dengue cases and deaths for subregions of the Americas\n\nhead(americas_annual_data)\n\n# A tibble: 6 × 5\n  region           country type   cases year \n  &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;\n1 Andean Subregion Bolivia Dengue 0     1980 \n2 Andean Subregion Bolivia Dengue 0     1980 \n3 Andean Subregion Bolivia Dengue 0     1980 \n4 Andean Subregion Bolivia Dengue 0     1980 \n5 Andean Subregion Bolivia Dengue 0     1980 \n6 Andean Subregion Bolivia Dengue 0     1981"
+  },
+  {
+    "objectID": "usa.html#all-dengue-cases-by-week-in-us-states-and-territories-2010---2023",
+    "href": "usa.html#all-dengue-cases-by-week-in-us-states-and-territories-2010---2023",
+    "title": "USA",
+    "section": "All dengue cases by week in US states and territories, 2010 - 2023",
+    "text": "All dengue cases by week in US states and territories, 2010 - 2023\n\nhead(cdc_casesby_week)\n\n# A tibble: 6 × 4\n   Year Travel.status Week  Reported.cases\n  &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;          &lt;dbl&gt;\n1  2010 All           01               189\n2  2010 All           02                75\n3  2010 All           03               100\n4  2010 All           04               113\n5  2010 All           05               112\n6  2010 All           06               123"
+  },
+  {
+    "objectID": "usa.html#dengue-cases-by-age-group-and-sex-in-us-states-and-territories-2010---2023",
+    "href": "usa.html#dengue-cases-by-age-group-and-sex-in-us-states-and-territories-2010---2023",
+    "title": "USA",
+    "section": "Dengue cases by age group and sex in US states and territories, 2010 - 2023",
+    "text": "Dengue cases by age group and sex in US states and territories, 2010 - 2023\n\nhead(cdc_dengue_agesex)\n\n# A tibble: 6 × 5\n   Year Travel.status Age       Male Female\n  &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;\n1  2010 All           &lt; 1        0.9    0.6\n2  2010 All           1 to 10    6.4    6  \n3  2010 All           11 to 19  20.4   15.6\n4  2010 All           20 to 29   7.7    6.3\n5  2010 All           30 to 39   4.8    3.9\n6  2010 All           40 to 49   4.6    3.6"
+  },
+  {
+    "objectID": "usa.html#all-dengue-cases-by-jurisdiction-of-residence-in-us-states-and-territories-2010---2023",
+    "href": "usa.html#all-dengue-cases-by-jurisdiction-of-residence-in-us-states-and-territories-2010---2023",
+    "title": "USA",
+    "section": "All dengue cases by jurisdiction of residence in US states and territories, 2010 - 2023",
+    "text": "All dengue cases by jurisdiction of residence in US states and territories, 2010 - 2023\n\nhead(cdc_dengue_casesbyjurisdiction)\n\n# A tibble: 6 × 6\n   Year Travel.status Jurisdiction Count Legend Notes\n  &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;\n1  2010 All           AK               1 1 to 4 &lt;NA&gt; \n2  2010 All           AL               4 1 to 4 &lt;NA&gt; \n3  2010 All           AR               1 1 to 4 &lt;NA&gt; \n4  2010 All           IA               2 1 to 4 &lt;NA&gt; \n5  2010 All           ID               3 1 to 4 &lt;NA&gt; \n6  2010 All           KS               4 1 to 4 &lt;NA&gt;"
+  },
+  {
+    "objectID": "usa.html#all-dengue-cases-by-county-of-residence-in-us-states-and-territories-2010---2023",
+    "href": "usa.html#all-dengue-cases-by-county-of-residence-in-us-states-and-territories-2010---2023",
+    "title": "USA",
+    "section": "All dengue cases by county of residence in US states and territories, 2010 - 2023",
+    "text": "All dengue cases by county of residence in US states and territories, 2010 - 2023\n\nhead(cdc_dengue_countyyear)\n\n# A tibble: 6 × 7\n  FullGeoName         Year Travel.status County Legend Notes  ``                \n  &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;             \n1 AL, Baldwin         2010 All           01003  1 to 4 1 to 4 AL, Baldwin County\n2 AL, Jefferson       2010 All           01073  1 to 4 1 to 4 AL, Jefferson Cou…\n3 AL, Madison         2010 All           01089  1 to 4 1 to 4 AL, Madison County\n4 AL, Mobile          2010 All           01097  1 to 4 1 to 4 AL, Mobile County \n5 AK, Anchorage Muny  2010 All           02020  1 to 4 1 to 4 AK, Anchorage, Mu…\n6 AZ, Pima            2010 All           04019  1 to 4 1 to 4 AZ, Pima County"
+  },
+  {
+    "objectID": "usa.html#locally-acquired-dengue-cases-by-year-2010---2023",
+    "href": "usa.html#locally-acquired-dengue-cases-by-year-2010---2023",
+    "title": "USA",
+    "section": "Locally acquired dengue cases by year, 2010 - 2023",
+    "text": "Locally acquired dengue cases by year, 2010 - 2023\n\nhead(cdc_local_dengue_cases)\n\n# A tibble: 6 × 3\n   Year Travel.status    Reported.cases\n  &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt;\n1  2010 Locally acquired          10969\n2  2011 Locally acquired           1552\n3  2012 Locally acquired           6169\n4  2013 Locally acquired           9933\n5  2014 Locally acquired            551\n6  2015 Locally acquired            261"
+  },
+  {
+    "objectID": "usa.html#travel-associated-dengue-cases-by-year-2010---2023",
+    "href": "usa.html#travel-associated-dengue-cases-by-year-2010---2023",
+    "title": "USA",
+    "section": "Travel associated dengue cases by year, 2010 - 2023",
+    "text": "Travel associated dengue cases by year, 2010 - 2023\n\nhead(cdc_travel_associated_dengue_cases)\n\n# A tibble: 6 × 3\n   Year Travel.status     Reported.cases\n  &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;\n1  2010 Travel associated            642\n2  2011 Travel associated            243\n3  2012 Travel associated            545\n4  2013 Travel associated            794\n5  2014 Travel associated            667\n6  2015 Travel associated            751"
+  },
+  {
+    "objectID": "usa.html#annual-number-of-dengue-fever-infections-in-the-usa",
+    "href": "usa.html#annual-number-of-dengue-fever-infections-in-the-usa",
+    "title": "USA",
+    "section": "Annual number of dengue fever infections in the USA",
+    "text": "Annual number of dengue fever infections in the USA\n\nhead(cdc_usa_dengue_infection)\n\n# A tibble: 6 × 6\n  area              year  week dengue_cases dengue_like_illness severe_dengue\n  &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;lgl&gt;               &lt;lgl&gt;        \n1 NON-US RESIDENTS  2022     2           NA NA                  NA           \n2 NEVADA            2022     2           NA NA                  NA           \n3 MISSOURI          2022     2           NA NA                  NA           \n4 NEW JERSEY        2022     2           NA NA                  NA           \n5 RHODE ISLAND      2022     2           NA NA                  NA           \n6 WISCONSIN         2022     2           NA NA                  NA           \n\n\nData Source: Centers for Disease Control and Prevention"
+  },
+  {
+    "objectID": "Webscraping.html",
+    "href": "Webscraping.html",
+    "title": "Web Scraping Functions",
+    "section": "",
+    "text": "library(denguedatahub)\nlibrary(tsibble)"
+  },
+  {
+    "objectID": "Webscraping.html#step-1-get-pdf-links-corresponds-to-2024",
+    "href": "Webscraping.html#step-1-get-pdf-links-corresponds-to-2024",
+    "title": "Web Scraping Functions",
+    "section": "Step 1: Get PDF links corresponds to 2024",
+    "text": "Step 1: Get PDF links corresponds to 2024\n\n\nlibrary(denguedatahub)\nlink2024 &lt;- get_pdflinks_srilanka(url=\"https://www.epid.gov.lk/weekly-epidemiological-report/weekly-epidemiological-report\", volume.number=\"Vol_51\")\nhead(link2024)\n\n[1] \"https://www.epid.gov.lk/storage/post/pdfs/en_65b8d3689b762_Vol_51_no_01-english.pdf\"\n[2] \"https://www.epid.gov.lk/storage/post/pdfs/en_65fc755050a91_Vol_51_no_02-english.pdf\"\n[3] \"https://www.epid.gov.lk/storage/post/pdfs/en_65fc71dbe22ce_Vol_51_no_03-english.pdf\"\n[4] \"https://www.epid.gov.lk/storage/post/pdfs/en_65fc6756ec7d6_Vol_51_no_04-english.pdf\"\n[5] \"https://www.epid.gov.lk/storage/post/pdfs/en_65fc628912f33_Vol_51_no_05-english.pdf\"\n[6] \"https://www.epid.gov.lk/storage/post/pdfs/en_65fc60581a048_Vol_51_no_06-english.pdf\""
+  },
+  {
+    "objectID": "Webscraping.html#step-2-convert-pdf-file-data-into-tibble-format",
+    "href": "Webscraping.html#step-2-convert-pdf-file-data-into-tibble-format",
+    "title": "Web Scraping Functions",
+    "section": "Step 2: Convert PDF file data into tibble format",
+    "text": "Step 2: Convert PDF file data into tibble format\n\nThis example illustrates the content of the first 2 pages of the PDF.\n\nlink2024[[1]][1] ## No 1 WER\n\n[1] \"https://www.epid.gov.lk/storage/post/pdfs/en_65b8d3689b762_Vol_51_no_01-english.pdf\"\n\nlink2024[[2]][1] ## No 30 WER\n\n[1] \"https://www.epid.gov.lk/storage/post/pdfs/en_65fc755050a91_Vol_51_no_02-english.pdf\"\n\ndata2024 &lt;- convert_slwer_to_tidy(year=2024, \n                                         reports.url=link2024[1:2], \n                                         start.date.first = \"2023-12-23\",\n                                         end.date.first = \"2023-12-29\",\n                                         start.date.last = \"2023-12-30\", \n                                         end.date.last = \"2024-1-05\",\n                                         week.no=c(52, 1))\n\nNew names:\nNew names:\n• `` -&gt; `...2`\n• `` -&gt; `...7`\n• `` -&gt; `...10`\n• `` -&gt; `...12`\n\nhead(data2024)\n\n# A tibble: 6 × 6\n   year  week start.date end.date   district    cases\n  &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;       &lt;chr&gt;\n1  2024    52 2023-12-23 2023-12-29 Colombo     375  \n2  2024    52 2023-12-23 2023-12-29 Gampaha     146  \n3  2024    52 2023-12-23 2023-12-29 Kalutara    89   \n4  2024    52 2023-12-23 2023-12-29 Kandy       330  \n5  2024    52 2023-12-23 2023-12-29 Matale      71   \n6  2024    52 2023-12-23 2023-12-29 NuwaraEliya 13"
+  },
+  {
+    "objectID": "Webscraping.html#function-to-download-weekly-epidemiological-reports-wek-and-save-them-inside-the-local-directory",
+    "href": "Webscraping.html#function-to-download-weekly-epidemiological-reports-wek-and-save-them-inside-the-local-directory",
+    "title": "Web Scraping Functions",
+    "section": "Function to download Weekly Epidemiological Reports (WEK) and save them inside the local directory",
+    "text": "Function to download Weekly Epidemiological Reports (WEK) and save them inside the local directory\n\ndownload_pdfwer_srilanka(url=\"https://www.epid.gov.lk/weekly-epidemiological-report/weekly-epidemiological-report\", folder.name=\"dengue\", volume.number=\"Vol_51\")"
   }
 ]

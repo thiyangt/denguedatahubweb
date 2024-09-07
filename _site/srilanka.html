@@ -146,11 +146,15 @@ ga('send', {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./world.html"> 
-<span class="menu-text">World</span></a>
+<span class="menu-text">All Countries</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./srilanka.html" aria-current="page"> 
 <span class="menu-text">Sri Lanka</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./usa.html"> 
+<span class="menu-text">USA</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./singapore.html"> 
@@ -165,8 +169,12 @@ ga('send', {
 <span class="menu-text">Other Countries</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./Webscraping.html"> 
+<span class="menu-text">Web Scraping Functions</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./commonfunctions.html"> 
-<span class="menu-text">Common functions</span></a>
+<span class="menu-text">Data Manipulation Functions</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./viz.html"> 
@@ -206,12 +214,6 @@ ga('send', {
   <ul class="collapse">
   <li><a href="#visualize-srilanka_weekly_data" id="toc-visualize-srilanka_weekly_data" class="nav-link" data-scroll-target="#visualize-srilanka_weekly_data">Visualize <code>srilanka_weekly_data</code></a></li>
   <li><a href="#time-series-visualization" id="toc-time-series-visualization" class="nav-link" data-scroll-target="#time-series-visualization">Time series visualization</a></li>
-  </ul></li>
-  <li><a href="#function-to-extract-dengue-cases-from-weekly-epidemiological-reports-published-by-epidemiology-unit-ministry-of-health-sri-lanka" id="toc-function-to-extract-dengue-cases-from-weekly-epidemiological-reports-published-by-epidemiology-unit-ministry-of-health-sri-lanka" class="nav-link" data-scroll-target="#function-to-extract-dengue-cases-from-weekly-epidemiological-reports-published-by-epidemiology-unit-ministry-of-health-sri-lanka">Function to extract dengue cases from weekly epidemiological reports published by Epidemiology Unit, Ministry of Health Sri Lanka</a>
-  <ul class="collapse">
-  <li><a href="#step-1-get-pdf-links-corresponds-to-2024" id="toc-step-1-get-pdf-links-corresponds-to-2024" class="nav-link" data-scroll-target="#step-1-get-pdf-links-corresponds-to-2024">Step 1: Get PDF links corresponds to 2024</a></li>
-  <li><a href="#step-2-convert-pdf-file-data-into-tibble-format" id="toc-step-2-convert-pdf-file-data-into-tibble-format" class="nav-link" data-scroll-target="#step-2-convert-pdf-file-data-into-tibble-format">Step 2: Convert PDF file data into tibble format</a></li>
-  <li><a href="#function-to-download-weekly-epidemiological-reports-wek-and-save-them-inside-the-local-directory" id="toc-function-to-download-weekly-epidemiological-reports-wek-and-save-them-inside-the-local-directory" class="nav-link" data-scroll-target="#function-to-download-weekly-epidemiological-reports-wek-and-save-them-inside-the-local-directory">Function to download Weekly Epidemiological Reports (WEK) and save them inside the local directory</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -313,70 +315,6 @@ Attaching package: 'tsibble'</code></pre>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="function-to-extract-dengue-cases-from-weekly-epidemiological-reports-published-by-epidemiology-unit-ministry-of-health-sri-lanka" class="level1">
-<h1>Function to extract dengue cases from weekly epidemiological reports published by <a href="https://www.epid.gov.lk/web/index.php?option=com_content&amp;view=article&amp;id=148&amp;Itemid=449&amp;lang=en">Epidemiology Unit, Ministry of Health Sri Lanka</a></h1>
-<section id="step-1-get-pdf-links-corresponds-to-2024" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-get-pdf-links-corresponds-to-2024">Step 1: Get PDF links corresponds to 2024</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(denguedatahub)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>link2024 <span class="ot">&lt;-</span> <span class="fu">get_pdflinks_srilanka</span>(<span class="at">url=</span><span class="st">"https://www.epid.gov.lk/weekly-epidemiological-report/weekly-epidemiological-report"</span>, <span class="at">volume.number=</span><span class="st">"Vol_51"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(link2024)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "https://www.epid.gov.lk/storage/post/pdfs/en_65b8d3689b762_Vol_51_no_01-english.pdf"
-[2] "https://www.epid.gov.lk/storage/post/pdfs/en_65fc755050a91_Vol_51_no_02-english.pdf"
-[3] "https://www.epid.gov.lk/storage/post/pdfs/en_65fc71dbe22ce_Vol_51_no_03-english.pdf"
-[4] "https://www.epid.gov.lk/storage/post/pdfs/en_65fc6756ec7d6_Vol_51_no_04-english.pdf"
-[5] "https://www.epid.gov.lk/storage/post/pdfs/en_65fc628912f33_Vol_51_no_05-english.pdf"
-[6] "https://www.epid.gov.lk/storage/post/pdfs/en_65fc60581a048_Vol_51_no_06-english.pdf"</code></pre>
-</div>
-</div>
-</section>
-<section id="step-2-convert-pdf-file-data-into-tibble-format" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-convert-pdf-file-data-into-tibble-format">Step 2: Convert PDF file data into tibble format</h2>
-<p>This example illustrates the content of the first 2 pages of the PDF.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>link2024[[<span class="dv">1</span>]][<span class="dv">1</span>] <span class="do">## No 1 WER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "https://www.epid.gov.lk/storage/post/pdfs/en_65b8d3689b762_Vol_51_no_01-english.pdf"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>link2024[[<span class="dv">2</span>]][<span class="dv">1</span>] <span class="do">## No 30 WER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "https://www.epid.gov.lk/storage/post/pdfs/en_65fc755050a91_Vol_51_no_02-english.pdf"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data2024 <span class="ot">&lt;-</span> <span class="fu">convert_slwer_to_tidy</span>(<span class="at">year=</span><span class="dv">2024</span>, </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">reports.url=</span>link2024[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">start.date.first =</span> <span class="st">"2023-12-23"</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">end.date.first =</span> <span class="st">"2023-12-29"</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">start.date.last =</span> <span class="st">"2023-12-30"</span>, </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">end.date.last =</span> <span class="st">"2024-1-05"</span>,</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">week.no=</span><span class="fu">c</span>(<span class="dv">52</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>New names:
-New names:
-• `` -&gt; `...2`
-• `` -&gt; `...7`
-• `` -&gt; `...10`
-• `` -&gt; `...12`</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data2024)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-   year  week start.date end.date   district    cases
-  &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;       &lt;chr&gt;
-1  2024    52 2023-12-23 2023-12-29 Colombo     375  
-2  2024    52 2023-12-23 2023-12-29 Gampaha     146  
-3  2024    52 2023-12-23 2023-12-29 Kalutara    89   
-4  2024    52 2023-12-23 2023-12-29 Kandy       330  
-5  2024    52 2023-12-23 2023-12-29 Matale      71   
-6  2024    52 2023-12-23 2023-12-29 NuwaraEliya 13   </code></pre>
-</div>
-</div>
-</section>
-<section id="function-to-download-weekly-epidemiological-reports-wek-and-save-them-inside-the-local-directory" class="level2">
-<h2 class="anchored" data-anchor-id="function-to-download-weekly-epidemiological-reports-wek-and-save-them-inside-the-local-directory">Function to download Weekly Epidemiological Reports (WEK) and save them inside the local directory</h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download_pdfwer_srilanka</span>(<span class="at">url=</span><span class="st">"https://www.epid.gov.lk/weekly-epidemiological-report/weekly-epidemiological-report"</span>, <span class="at">folder.name=</span><span class="st">"dengue"</span>, <span class="at">volume.number=</span><span class="st">"Vol_51"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

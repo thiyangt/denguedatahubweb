@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Dengue Data Hub - Common functions</title>
+<title>Dengue Data Hub - Data Manipulation Functions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -146,11 +146,15 @@ ga('send', {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./world.html"> 
-<span class="menu-text">World</span></a>
+<span class="menu-text">All Countries</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./srilanka.html"> 
 <span class="menu-text">Sri Lanka</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./usa.html"> 
+<span class="menu-text">USA</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./singapore.html"> 
@@ -165,8 +169,12 @@ ga('send', {
 <span class="menu-text">Other Countries</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./Webscraping.html"> 
+<span class="menu-text">Web Scraping Functions</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link active" href="./commonfunctions.html" aria-current="page"> 
-<span class="menu-text">Common functions</span></a>
+<span class="menu-text">Data Manipulation Functions</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./viz.html"> 
@@ -214,7 +222,7 @@ ga('send', {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Common functions</h1>
+<h1 class="title">Data Manipulation Functions</h1>
 </div>
 
 
@@ -242,25 +250,33 @@ ga('send', {
 </script>
 <section id="application-of-min_max-function" class="level1">
 <h1>Application of <code>min_max</code> function</h1>
-<p>Visualizing multiple time series can be a challenging task due to issues like overlapping and scale differences. One popular approach to visualize all time series in a single plot is by using a heat map. In this context, we have written a code to visualize the dengue data for all districts in Sri Lanka, covering the period from 2008 to the present. This visualization can be useful in identifying the dominating districts in terms of dengue outbreaks.</p>
+<p>Visualizing multiple time series can be a challenging task due to issues like overlapping and scale differences. One popular approach to visualize all time series in a single plot. This visualization can be useful in identifying the dominating districts in terms of dengue outbreaks.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(denguedatahub)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(srilanka_weekly_data, <span class="fu">aes</span>(<span class="at">y=</span>district, <span class="at">x=</span>start.date, <span class="at">fill=</span>cases)) <span class="sc">+</span> </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span> </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span>  <span class="fu">geom_raster</span>() <span class="sc">+</span><span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"District"</span>) <span class="sc">+</span> </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(srilanka_weekly_data, <span class="fu">aes</span>(<span class="at">color=</span>cases, <span class="at">x=</span>start.date, <span class="at">y=</span>cases, <span class="at">group=</span>district)) <span class="sc">+</span> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">option=</span><span class="st">'turbo'</span>) <span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span>  <span class="fu">ylab</span>(<span class="st">"Dengue Counts"</span>) <span class="sc">+</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>)) </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(srilanka_weekly_data, <span class="fu">aes</span>(<span class="at">color=</span>district, <span class="at">x=</span>start.date, <span class="at">y=</span>cases, <span class="at">group=</span>district)) <span class="sc">+</span> </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span>  <span class="fu">ylab</span>(<span class="st">"Dengue Counts"</span>) <span class="sc">+</span> </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>)) </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>p1<span class="sc">/</span>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="commonfunctions_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="1920"></p>
+<p><img src="commonfunctions_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>However, relying solely on the above heat map can sometimes make it difficult to identify whether all districts have a similar pattern or not. For instance, it may not be immediately clear whether the peak periods of all districts are similar or not. To overcome this challenge, we can apply a min-max transformation to each series based on its minimum and maximum values. This can help us to compare the patterns across different districts more easily, and gain insights into the temporal dynamics of dengue outbreaks in Sri Lanka.</p>
+<p>However, relying solely on the above plots can sometimes make it difficult to identify whether all districts have a similar pattern or not. For instance, it may not be immediately clear whether the peak periods of all districts are similar or not. To overcome this challenge, we can apply a min-max transformation to each series based on its minimum and maximum values. This can help us to compare the patterns across different districts more easily, and gain insights into the temporal dynamics of dengue outbreaks in Sri Lanka.</p>
 <p>The <code>min_max</code> function with the parameter local=TRUE helps you easily normalize the series using the min-max transformation with respect to each series minimum and maximum value.</p>
 <section id="apply-min-max-transformation-using-min_max-function" class="level2">
 <h2 class="anchored" data-anchor-id="apply-min-max-transformation-using-min_max-function">Apply min-max transformation using <code>min_max</code> function</h2>
@@ -288,16 +304,24 @@ ga('send', {
 # ℹ 1 more variable: minmax.group &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p>Step 2: Heat map on the transformed series</p>
+<p>Step 2: Transformed series</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(srilanka.minmax, <span class="fu">aes</span>(<span class="at">y=</span>district, <span class="at">x=</span>start.date, <span class="at">fill=</span>minmax.group)) <span class="sc">+</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span> <span class="fu">geom_raster</span>() <span class="sc">+</span><span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Year"</span>) <span class="sc">+</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(srilanka.minmax, <span class="fu">aes</span>(<span class="at">colour=</span>minmax.group, <span class="at">x=</span>start.date, <span class="at">y=</span>minmax.group, <span class="at">group=</span>district)) <span class="sc">+</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">option=</span><span class="st">'turbo'</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Year"</span>) <span class="sc">+</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(srilanka.minmax, <span class="fu">aes</span>(<span class="at">colour=</span>district, <span class="at">x=</span>start.date, <span class="at">y=</span>minmax.group, <span class="at">group=</span>district)) <span class="sc">+</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ylab</span>(<span class="st">"Year"</span>) <span class="sc">+</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>p3<span class="sc">/</span>p4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="commonfunctions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="1920"></p>
+<p><img src="commonfunctions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>

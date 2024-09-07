@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Dengue Data Hub - Tutorials</title>
+<title>Dengue Data Hub - USA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -153,7 +153,7 @@ ga('send', {
 <span class="menu-text">Sri Lanka</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./usa.html"> 
+    <a class="nav-link active" href="./usa.html" aria-current="page"> 
 <span class="menu-text">USA</span></a>
   </li>  
   <li class="nav-item">
@@ -205,20 +205,33 @@ ga('send', {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#dengue-and-severe-dengue-cases-and-deaths-for-subregions-of-the-americas" id="toc-dengue-and-severe-dengue-cases-and-deaths-for-subregions-of-the-americas" class="nav-link active" data-scroll-target="#dengue-and-severe-dengue-cases-and-deaths-for-subregions-of-the-americas">Dengue and severe dengue cases and deaths for subregions of the Americas</a></li>
+  <li><a href="#all-dengue-cases-by-week-in-us-states-and-territories-2010---2023" id="toc-all-dengue-cases-by-week-in-us-states-and-territories-2010---2023" class="nav-link" data-scroll-target="#all-dengue-cases-by-week-in-us-states-and-territories-2010---2023">All dengue cases by week in US states and territories, 2010 - 2023</a></li>
+  <li><a href="#dengue-cases-by-age-group-and-sex-in-us-states-and-territories-2010---2023" id="toc-dengue-cases-by-age-group-and-sex-in-us-states-and-territories-2010---2023" class="nav-link" data-scroll-target="#dengue-cases-by-age-group-and-sex-in-us-states-and-territories-2010---2023">Dengue cases by age group and sex in US states and territories, 2010 - 2023</a></li>
+  <li><a href="#all-dengue-cases-by-jurisdiction-of-residence-in-us-states-and-territories-2010---2023" id="toc-all-dengue-cases-by-jurisdiction-of-residence-in-us-states-and-territories-2010---2023" class="nav-link" data-scroll-target="#all-dengue-cases-by-jurisdiction-of-residence-in-us-states-and-territories-2010---2023">All dengue cases by jurisdiction of residence in US states and territories, 2010 - 2023</a></li>
+  <li><a href="#all-dengue-cases-by-county-of-residence-in-us-states-and-territories-2010---2023" id="toc-all-dengue-cases-by-county-of-residence-in-us-states-and-territories-2010---2023" class="nav-link" data-scroll-target="#all-dengue-cases-by-county-of-residence-in-us-states-and-territories-2010---2023">All dengue cases by county of residence in US states and territories, 2010 - 2023</a></li>
+  <li><a href="#locally-acquired-dengue-cases-by-year-2010---2023" id="toc-locally-acquired-dengue-cases-by-year-2010---2023" class="nav-link" data-scroll-target="#locally-acquired-dengue-cases-by-year-2010---2023">Locally acquired dengue cases by year, 2010 - 2023</a></li>
+  <li><a href="#travel-associated-dengue-cases-by-year-2010---2023" id="toc-travel-associated-dengue-cases-by-year-2010---2023" class="nav-link" data-scroll-target="#travel-associated-dengue-cases-by-year-2010---2023">Travel associated dengue cases by year, 2010 - 2023</a></li>
+  <li><a href="#annual-number-of-dengue-fever-infections-in-the-usa" id="toc-annual-number-of-dengue-fever-infections-in-the-usa" class="nav-link" data-scroll-target="#annual-number-of-dengue-fever-infections-in-the-usa">Annual number of dengue fever infections in the USA</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tutorials</h1>
+<h1 class="title">USA</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -239,44 +252,149 @@ ga('send', {
 
   gtag('config', 'G-MMF7S9CQZW');
 </script>
-<p>Spatio-temporal Visualization of Dengue Incidence</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(denguedatahub)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ceylon)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>srilanka_weekly_data<span class="sc">$</span>month <span class="ot">&lt;-</span> <span class="fu">month</span>(srilanka_weekly_data<span class="sc">$</span>start.date)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>srilanka_weekly_data<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(srilanka_weekly_data<span class="sc">$</span>start.date)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>srilanka_weekly_data<span class="sc">$</span>district <span class="ot">&lt;-</span> <span class="fu">toupper</span>(srilanka_weekly_data<span class="sc">$</span>district)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>district <span class="ot">&lt;-</span> district <span class="sc">%&gt;%</span> </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># use District names from slwer data</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">district =</span> <span class="fu">case_when</span>(</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>          DISTRICT <span class="sc">==</span>  <span class="st">"NUWARA ELIYA"</span> <span class="sc">~</span> <span class="st">"NUWARAELIYA"</span> ,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>          DISTRICT <span class="sc">==</span> <span class="st">"HAMBANTOTA"</span> <span class="sc">~</span> <span class="st">"HAMBANTHOTA"</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>          <span class="cn">TRUE</span> <span class="sc">~</span> DISTRICT))</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>all <span class="ot">&lt;-</span>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(district, srilanka_weekly_data,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                   <span class="at">by =</span> <span class="st">"district"</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>all <span class="ot">&lt;-</span> all <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(year, district) <span class="sc">%&gt;%</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">total =</span> <span class="fu">sum</span>(cases)) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() </span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>all<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(all<span class="sc">$</span>year)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(all2021) <span class="sc">+</span> </span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> total), <span class="at">show.legend =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis</span>() <span class="sc">+</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(year), <span class="at">ncol=</span><span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"2021"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="dengue-and-severe-dengue-cases-and-deaths-for-subregions-of-the-americas" class="level2">
+<h2 class="anchored" data-anchor-id="dengue-and-severe-dengue-cases-and-deaths-for-subregions-of-the-americas">Dengue and severe dengue cases and deaths for subregions of the Americas</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(americas_annual_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  region           country type   cases year 
+  &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;
+1 Andean Subregion Bolivia Dengue 0     1980 
+2 Andean Subregion Bolivia Dengue 0     1980 
+3 Andean Subregion Bolivia Dengue 0     1980 
+4 Andean Subregion Bolivia Dengue 0     1980 
+5 Andean Subregion Bolivia Dengue 0     1980 
+6 Andean Subregion Bolivia Dengue 0     1981 </code></pre>
+</div>
+</div>
+</section>
+<section id="all-dengue-cases-by-week-in-us-states-and-territories-2010---2023" class="level2">
+<h2 class="anchored" data-anchor-id="all-dengue-cases-by-week-in-us-states-and-territories-2010---2023">All dengue cases by week in US states and territories, 2010 - 2023</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cdc_casesby_week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+   Year Travel.status Week  Reported.cases
+  &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;          &lt;dbl&gt;
+1  2010 All           01               189
+2  2010 All           02                75
+3  2010 All           03               100
+4  2010 All           04               113
+5  2010 All           05               112
+6  2010 All           06               123</code></pre>
+</div>
+</div>
+</section>
+<section id="dengue-cases-by-age-group-and-sex-in-us-states-and-territories-2010---2023" class="level2">
+<h2 class="anchored" data-anchor-id="dengue-cases-by-age-group-and-sex-in-us-states-and-territories-2010---2023">Dengue cases by age group and sex in US states and territories, 2010 - 2023</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cdc_dengue_agesex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+   Year Travel.status Age       Male Female
+  &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+1  2010 All           &lt; 1        0.9    0.6
+2  2010 All           1 to 10    6.4    6  
+3  2010 All           11 to 19  20.4   15.6
+4  2010 All           20 to 29   7.7    6.3
+5  2010 All           30 to 39   4.8    3.9
+6  2010 All           40 to 49   4.6    3.6</code></pre>
+</div>
+</div>
+</section>
+<section id="all-dengue-cases-by-jurisdiction-of-residence-in-us-states-and-territories-2010---2023" class="level2">
+<h2 class="anchored" data-anchor-id="all-dengue-cases-by-jurisdiction-of-residence-in-us-states-and-territories-2010---2023">All dengue cases by jurisdiction of residence in US states and territories, 2010 - 2023</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cdc_dengue_casesbyjurisdiction)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+   Year Travel.status Jurisdiction Count Legend Notes
+  &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
+1  2010 All           AK               1 1 to 4 &lt;NA&gt; 
+2  2010 All           AL               4 1 to 4 &lt;NA&gt; 
+3  2010 All           AR               1 1 to 4 &lt;NA&gt; 
+4  2010 All           IA               2 1 to 4 &lt;NA&gt; 
+5  2010 All           ID               3 1 to 4 &lt;NA&gt; 
+6  2010 All           KS               4 1 to 4 &lt;NA&gt; </code></pre>
+</div>
+</div>
+</section>
+<section id="all-dengue-cases-by-county-of-residence-in-us-states-and-territories-2010---2023" class="level2">
+<h2 class="anchored" data-anchor-id="all-dengue-cases-by-county-of-residence-in-us-states-and-territories-2010---2023">All dengue cases by county of residence in US states and territories, 2010 - 2023</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cdc_dengue_countyyear)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  FullGeoName         Year Travel.status County Legend Notes  ``                
+  &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;             
+1 AL, Baldwin         2010 All           01003  1 to 4 1 to 4 AL, Baldwin County
+2 AL, Jefferson       2010 All           01073  1 to 4 1 to 4 AL, Jefferson Cou…
+3 AL, Madison         2010 All           01089  1 to 4 1 to 4 AL, Madison County
+4 AL, Mobile          2010 All           01097  1 to 4 1 to 4 AL, Mobile County 
+5 AK, Anchorage Muny  2010 All           02020  1 to 4 1 to 4 AK, Anchorage, Mu…
+6 AZ, Pima            2010 All           04019  1 to 4 1 to 4 AZ, Pima County   </code></pre>
+</div>
+</div>
+</section>
+<section id="locally-acquired-dengue-cases-by-year-2010---2023" class="level2">
+<h2 class="anchored" data-anchor-id="locally-acquired-dengue-cases-by-year-2010---2023">Locally acquired dengue cases by year, 2010 - 2023</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cdc_local_dengue_cases)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+   Year Travel.status    Reported.cases
+  &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt;
+1  2010 Locally acquired          10969
+2  2011 Locally acquired           1552
+3  2012 Locally acquired           6169
+4  2013 Locally acquired           9933
+5  2014 Locally acquired            551
+6  2015 Locally acquired            261</code></pre>
+</div>
+</div>
+</section>
+<section id="travel-associated-dengue-cases-by-year-2010---2023" class="level2">
+<h2 class="anchored" data-anchor-id="travel-associated-dengue-cases-by-year-2010---2023">Travel associated dengue cases by year, 2010 - 2023</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cdc_travel_associated_dengue_cases)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+   Year Travel.status     Reported.cases
+  &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;
+1  2010 Travel associated            642
+2  2011 Travel associated            243
+3  2012 Travel associated            545
+4  2013 Travel associated            794
+5  2014 Travel associated            667
+6  2015 Travel associated            751</code></pre>
+</div>
+</div>
+</section>
+<section id="annual-number-of-dengue-fever-infections-in-the-usa" class="level2">
+<h2 class="anchored" data-anchor-id="annual-number-of-dengue-fever-infections-in-the-usa">Annual number of dengue fever infections in the USA</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cdc_usa_dengue_infection)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  area              year  week dengue_cases dengue_like_illness severe_dengue
+  &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;lgl&gt;               &lt;lgl&gt;        
+1 NON-US RESIDENTS  2022     2           NA NA                  NA           
+2 NEVADA            2022     2           NA NA                  NA           
+3 MISSOURI          2022     2           NA NA                  NA           
+4 NEW JERSEY        2022     2           NA NA                  NA           
+5 RHODE ISLAND      2022     2           NA NA                  NA           
+6 WISCONSIN         2022     2           NA NA                  NA           </code></pre>
+</div>
+</div>
+<p>Data Source: <a href="https://www.cdc.gov/index.html">Centers for Disease Control and Prevention</a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

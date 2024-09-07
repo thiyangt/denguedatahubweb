@@ -1,5 +1,5 @@
 ---
-title: "Common functions"
+title: "Data Manipulation Functions"
 toc: true
 format:
   html:
@@ -18,24 +18,31 @@ format:
 
 # Application of `min_max` function
 
-Visualizing multiple time series can be a challenging task due to issues like overlapping and scale differences. One popular approach to visualize all time series in a single plot is by using a heat map. In this context, we have written a code to visualize the dengue data for all districts in Sri Lanka, covering the period from 2008 to the present. This visualization can be useful in identifying the dominating districts in terms of dengue outbreaks.
+Visualizing multiple time series can be a challenging task due to issues like overlapping and scale differences. One popular approach to visualize all time series in a single plot. This visualization can be useful in identifying the dominating districts in terms of dengue outbreaks.
 
 
 
-```{r, warning=FALSE, message=FALSE, fig.width=20, fig.height=15}
+```{r, warning=FALSE, message=FALSE, fig.width=12, fig.height=10}
 library(tidyverse)
 library(denguedatahub)
 library(viridis)
 library(lubridate)
-ggplot(srilanka_weekly_data, aes(y=district, x=start.date, fill=cases)) + 
-  geom_tile() + 
-  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +  geom_raster() +scale_fill_viridis_c() + ylab("District") + 
+library(patchwork)
+p1 <- ggplot(srilanka_weekly_data, aes(color=cases, x=start.date, y=cases, group=district)) + 
+  geom_line() + 
+  scale_color_viridis(option='turbo') +
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +  ylab("Dengue Counts") + 
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
 
+p2 <- ggplot(srilanka_weekly_data, aes(color=district, x=start.date, y=cases, group=district)) + 
+  geom_line() + 
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +  ylab("Dengue Counts") + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+p1/p2
 ```
 
 
-However, relying solely on the above heat map can sometimes make it difficult to identify whether all districts have a similar pattern or not. For instance, it may not be immediately clear whether the peak periods of all districts are similar or not. To overcome this challenge, we can apply a min-max transformation to each series based on its minimum and maximum values. This can help us to compare the patterns across different districts more easily, and gain insights into the temporal dynamics of dengue outbreaks in Sri Lanka.
+However, relying solely on the above plots can sometimes make it difficult to identify whether all districts have a similar pattern or not. For instance, it may not be immediately clear whether the peak periods of all districts are similar or not. To overcome this challenge, we can apply a min-max transformation to each series based on its minimum and maximum values. This can help us to compare the patterns across different districts more easily, and gain insights into the temporal dynamics of dengue outbreaks in Sri Lanka.
 
 The `min_max` function with the parameter local=TRUE helps you easily normalize the series using the min-max transformation with respect to each series minimum and maximum value.
 
@@ -43,19 +50,27 @@ The `min_max` function with the parameter local=TRUE helps you easily normalize 
 
 Step 1: Apply min-max transformation
 
-```{r}
+```{r, fig.width=12}
 srilanka.minmax <- min_max(srilanka_weekly_data, 
       variable.to.minmax="cases" , local = TRUE, group.var="district")
 srilanka.minmax
 ```
 
-Step 2: Heat map on the transformed series
+Step 2: Transformed series
 
-```{r, fig.width=20, fig.height=15, warning=FALSE}
-ggplot(srilanka.minmax, aes(y=district, x=start.date, fill=minmax.group)) + 
-  geom_tile() + 
-  scale_x_date(date_breaks = "1 year", date_labels = "%Y") + geom_raster() +scale_fill_viridis_c() + ylab("Year") + 
+```{r, fig.width=12, fig.height=10, warning=FALSE}
+p3 <- ggplot(srilanka.minmax, aes(colour=minmax.group, x=start.date, y=minmax.group, group=district)) + 
+  geom_line() + 
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
+  scale_color_viridis(option='turbo') + ylab("Year") + 
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+p4 <- ggplot(srilanka.minmax, aes(colour=district, x=start.date, y=minmax.group, group=district)) + 
+  geom_line() + 
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
+   ylab("Year") + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+p3/p4
 ```
 
 
