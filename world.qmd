@@ -26,22 +26,24 @@ level_of_risk
 
 ```
 
-## Visualize `level_of_risk` dataset
 
-```{r}
-library(visdat)
-vis_dat(level_of_risk) 
-```
 
 ## Summarize and Visualize `level_of_risk`data
 
 ```{r, message=FALSE, warning=FALSE}
 library(tidyverse)
-tab1 <- level_of_risk %>% group_by(region, level_of_risk) %>%
-  summarise(count = n(), .groups = 'drop') 
-knitr::kable(tab1)
-ggplot(tab1, aes(region, count)) + 
-  geom_bar(aes(fill = level_of_risk), stat = "identity", position = "dodge") + theme(legend.position = "bottom") + xlab("Region") + ylab("Number of countries") + scale_fill_brewer(palette = "Dark2")
+tab1 <- level_of_risk |> 
+  filter(last_accessed == "2024-09-03") |>
+  group_by(region, level_of_risk) |>
+  summarise(count = n(), .groups = 'drop')
+
+ggplot(tab1, aes(region, count, fill = level_of_risk)) + 
+  geom_bar(stat = "identity", position = position_dodge(preserve = "single")) + 
+  theme(legend.position = "bottom") + 
+  xlab("Region") + 
+  ylab("Number of countries") + 
+  scale_fill_brewer(palette = "Dark2") +
+  scale_x_discrete(drop = TRUE)
 ```
 
 # Presence of dengue incidence in 2019

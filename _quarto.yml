@@ -12,6 +12,7 @@ website:
       - srilanka.qmd
       - singapore.qmd
       - china.qmd
+      - other.qmd
       - commonfunctions.qmd
       - viz.qmd
       - collaborate.qmd

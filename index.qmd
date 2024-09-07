@@ -15,6 +15,27 @@ about:
       href: https://github.com/thiyangt/denguedatahub
 ---
 
+<style>
+.centered-heading {
+  text-align: center;
+  color: blue;
+  animation: fadeIn 3s ease-in-out;
+}
+
+.red-text {
+  color: red;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+</style>
+
+# <span class="centered-heading">Welcome to the <span class="red-text">Dengue Data Hub</span>, a centralized repository for dengue-related data from around the world!</span>
+
+# We have data for 225 countries around the world!
+
 # Author: [Dr Thiyanga S. Talagala](https://thiyanga.netlify.app/)
 
 
