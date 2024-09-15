@@ -18,12 +18,32 @@ format:
 
 # District-wise weekly Dengue cases from 2006 to 2023-present
 
-```{r, echo=TRUE, eval=TRUE}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 library(denguedatahub)
 library(tsibble)
 srilanka_weekly_data
 
 ```
+
+#  Identification of dengue serotypes circulating in Sri Lanka
+
+```{r}
+head(sl_dengue_serotype)
+```
+
+#  Type and proportion of breeding habitats positive for Aedes aegypti mosquitoes, across provinces in Sri Lanka, 2017
+
+```{r}
+head(sl_sites)
+```
+
+# Annual reported dengue cases in Sri Lanka
+
+```{r}
+head(sl_annual)
+```
+
+# Tutorial: Visualisation of Data
 
 ## Visualize `srilanka_weekly_data`
 

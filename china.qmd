@@ -18,7 +18,7 @@ format:
 
 # Annual Dengue Cases from 2005 to 2020
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(denguedatahub)
 library(tsibble)
 china_annual_data

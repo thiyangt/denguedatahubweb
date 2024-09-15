@@ -18,15 +18,17 @@ format:
 
 # Data
 
-# Click [here](https://denguedatahub.shinyapps.io/shiny/) to view the app.
+# Click [here](https://denguedatahub.shinyapps.io/denguedatahub/) to view the app.
 
 Here is a video demonstration.
 
-![](dh.mov)
+<!--![](dh.mov)-->
+
+![](shinyapp.mp4)
 
 # Interactive data visualization: Sri Lanka
 
-# Click [here](https://github.com/thiyangt/denguedatahubweb.git) to view the app.
+# Click [here](https://github.com/thiyangt/denguetsibbletalk) to view the app.
 
 Here is a video demonstration.
 

@@ -18,7 +18,7 @@ format:
 
 # Weekly Dengue Cases in Singapore from 2018 to 2023
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(denguedatahub)
 library(tsibble)
 singapore_weekly_data
